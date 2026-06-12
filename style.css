@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000000;
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.main-screen {
+    background-image: url('imgs/back.png'), url('imgs/fon.png');
+    background-size: 2799px 1603px, cover;
+    background-position: -449px -161px, center;
+    background-repeat: no-repeat, no-repeat;
+}
+
+.rules-screen {
+    background-image: url('imgs/main.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.logo {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.promo-case {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 1081px;
+}
+
+.title {
+    width: 100%;
+    font-family: 'Furore', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 80px;
+    line-height: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.subtitle {
+    width: 100%;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 32px;
+    line-height: 110%;
+    text-align: center;
+    color: #ffffff;
+}
+
+.rules-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1600px;
+    gap: 90px;
+}
+
+.rules-title {
+    width: 100%;
+    max-width: 511px;
+    font-family: 'Furore', sans-serif;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.rules-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.rule-card {
+    display: block;
+    width: 100%;
+    max-width: 416px;
+    height: 274px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.btn-start, .btn-continue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 319px;
+    height: 60px;
+    border: none;
+    border-radius: 12px;
+    padding: 18px 32px;
+    background-color: #FA2529;
+    font-family: 'Furore', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #ffffff;
+    cursor: pointer;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Футбольная интуиция - Игра</title>
+    <link href="https://fonts.cdnfonts.com/css/furore" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/helvetica-2" rel="stylesheet">
+    <link rel="stylesheet" href="mechanics.css">
+</head>
+<body>
+
+    <section class="game-screen">
+        
+        <div id="play-zone" class="game-zone">
+            <h2 class="game-title">ЧТО ПРОИЗОЙДЁТ ДАЛЬШЕ?</h2>
+            <div id="episode-counter" class="game-counter">1/3</div>
+
+            <div class="video-container">
+                <video id="game-video" src="vid/video1.mp4" playsinline muted></video>
+                
+                <div id="quiz-overlay" class="quiz-overlay hidden">
+                    <div class="quiz-options">
+                        <button class="quiz-btn" data-answer="Гол">Гол</button>
+                        <button class="quiz-btn" data-answer="Сейв">Сейв</button>
+                        <button class="quiz-btn" data-answer="Удар мимо">Удар мимо</button>
+                        <button class="quiz-btn" data-answer="Офсайд">Офсайд</button>
+                    </div>
+                    <button id="btn-next" class="btn-next">ДАЛЕЕ</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="result-zone" class="game-zone result-layout hidden">
+            <div class="result-info">
+                <h3 id="result-title" class="result-title">ВЫ УГАДАЛИ!</h3>
+                <p id="result-subtitle" class="result-subtitle">Ван Перси забил один из самых эффектных голов ЧМ-2014 — ударом головой в прыжке в матче Нидерланды — Испания.</p>
+                <div class="result-buttons">
+                    <button id="btn-action-continue" class="btn-action red">ПРОДОЛЖИТЬ ИГРУ</button>
+                    <button id="btn-action-bonus" class="btn-action blue">ПОЛУЧИТЬ БОНУС</button>
+                </div>
+            </div>
+            
+            <div class="result-media">
+                <img id="result-image" src="imgs/1.png" alt="Эпизод" class="img-result">
+            </div>
+        </div>
+
+        <div id="bonus-zone" class="game-zone bonus-layout hidden">
+            <img src="imgs/logo.png" alt="Бет-М" class="bonus-logo">
+            <div class="bonus-content">
+                <h3 class="bonus-title">ФУТБОЛ УМЕЕТ УДИВЛЯТЬ</h3>
+                <p class="bonus-subtitle">Забирайте приз от Бет-М и смотрите матчи с большим интересом</p>
+                <button id="btn-get-bonus-final" class="btn-bonus-final">ЗАБРАТЬ БОНУС</button>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="mechanics.js"></script>
+</body>
+</html>
