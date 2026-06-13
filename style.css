@@ -27,7 +27,7 @@ body {
 .main-screen {
     background-image: url('imgs/back.png'), url('imgs/fon.png');
     background-size: 2799px 1603px, cover;
-    background-position: -449px -161px, center;
+    background-position: center top -200px, center;
     background-repeat: no-repeat, no-repeat;
 }
 
@@ -138,4 +138,198 @@ body {
     font-weight: 400;
     color: #ffffff;
     cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .logo-container {
+        margin-bottom: 20px;
+    }
+    
+    .rules-content {
+        margin-top: auto;    
+        margin-bottom: auto; 
+    }
+
+    .promo-case {
+        margin-top: 60px;    
+        margin-bottom: auto; 
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .screen {
+        padding: 40px 40px;
+    }
+
+    .promo-case {
+        max-width: 900px;
+        gap: 24px;
+    }
+
+    .title {
+        font-size: 64px;
+    }
+
+    .subtitle {
+        font-size: 26px;
+    }
+
+    .rules-content {
+        max-width: 1100px;
+        gap: 60px;
+    }
+
+    .rules-container {
+        gap: 24px;
+    }
+
+    .rule-card {
+        max-width: 320px;
+        height: 212px;
+        object-fit: fill;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .screen {
+        padding: 40px 30px;
+    }
+
+    .logo {
+        max-width: 180px;
+    }
+
+    .promo-case {
+        max-width: 680px;
+        gap: 20px;
+    }
+
+    .title {
+        font-size: 48px;
+    }
+
+    .subtitle {
+        font-size: 22px;
+    }
+
+    .rules-content {
+        max-width: 860px;
+        gap: 40px;
+    }
+
+    .rules-title {
+        font-size: 32px;
+    }
+
+    .rules-container {
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    .rule-card {
+        max-width: 250px;
+        height: 165px;
+        object-fit: fill;
+    }
+}
+
+@media (max-width: 767px) {
+    .screen {
+        height: 100vh;
+        height: 100dvh; 
+        max-height: 100dvh;
+        overflow: hidden;
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .main-screen {
+        background-size: 1282px auto, cover;
+        background-position: center bottom;
+    }
+
+    .logo-container {
+        margin-bottom: 0;
+    }
+
+    .logo {
+        width: 100%;
+        max-width: 126px;
+        height: 40px;
+        object-fit: contain;
+    }
+
+    .promo-case {
+        margin: 60px auto 0 auto; 
+        width: 100%;
+        max-width: 340px;
+        gap: 20px;
+    }
+
+    .title {
+        font-size: clamp(18px, 6.5vw, 24px);
+        white-space: nowrap;
+        letter-spacing: 0.04em;
+        line-height: 100%;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        line-height: 120%;
+        max-width: 340px;
+    }
+
+    .btn-start, .btn-continue {
+        width: 100%;
+        max-width: 340px;
+        height: 60px;
+        font-size: 20px;
+    }
+
+    .rules-content {
+        margin: 60px auto 0 auto; 
+        width: 100%;
+        max-width: 340px;
+        gap: 16px;
+    }
+
+    .rules-title {
+        font-size: 24px;
+        line-height: 100%;
+        white-space: nowrap;
+    }
+
+    .rules-container {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .rule-card {
+        width: 100%;
+        max-width: 340px;
+        height: 180px;
+        object-fit: fill;
+        border-radius: 20px;
+    }
+
+    @media (max-height: 740px) {
+        .screen {
+            padding: 20px 20px;
+        }
+        .rules-content {
+            gap: 10px;
+        }
+        .rules-container {
+            gap: 6px;
+        }
+        .rule-card {
+            height: 135px;
+        }
+        .promo-case {
+            gap: 12px;
+        }
+    }
 }

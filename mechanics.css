@@ -311,3 +311,219 @@ body {
     cursor: pointer;
     text-transform: uppercase;
 }
+
+@media (max-width: 767px) {
+    
+    .game-zone {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 20px;
+        height: 100vh;
+        box-sizing: border-box;
+    }
+
+    #play-zone::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 28px;
+        background-image: url('imgs/logo.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-bottom: auto;
+    }
+
+    .game-title {
+        font-size: 24px;
+        line-height: 115%;
+        max-width: 260px;
+        text-align: center;
+        margin: 0 auto 6px auto;
+    }
+
+    .game-counter {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    .video-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        background-color: transparent;
+        overflow: visible;
+        border-radius: 0;
+        margin: 0 auto auto auto;
+        flex-shrink: 0;
+    }
+
+    #game-video {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-radius: 14px;
+        background-color: #000000;
+    }
+
+    .quiz-overlay {
+        position: relative;
+        width: 100%;
+        height: auto;
+        background-color: transparent;
+        margin-top: 16px;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .quiz-options {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+
+    .quiz-btn {
+        width: 100%;
+        height: 46px;
+        font-size: 15px;
+        padding: 0 10px;
+    }
+
+    .btn-next {
+        width: 100%;
+        max-width: 340px;
+        height: 52px;
+        font-size: 18px;
+    }
+
+    #result-zone::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 28px;
+        background-image: url('imgs/logo.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-bottom: auto;
+        order: 1;
+    }
+
+    #result-zone.result-layout {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 20px;
+        gap: 0;
+    }
+
+    #result-zone .result-info {
+        display: contents;
+    }
+
+    #result-zone .result-title {
+        order: 2;
+        font-size: 26px;
+        line-height: 110%;
+        text-align: center;
+        margin: 0 auto 14px auto;
+        width: 100%;
+    }
+
+    #result-zone .result-media {
+        order: 3;
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto 14px auto;
+        display: flex;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    #result-zone .img-result {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 14px;
+    }
+
+    #result-zone .result-subtitle {
+        order: 4;
+        font-size: 15px;
+        line-height: 140%;
+        text-align: center;
+        margin-bottom: 20px;
+        max-width: 340px;
+        width: 100%;
+    }
+
+    #result-zone .result-buttons {
+        order: 5;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto auto auto;
+    }
+
+    #result-zone .btn-action {
+        width: 100%;
+        height: 52px;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    #bonus-zone.bonus-layout {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 20px;
+    }
+
+    .bonus-logo {
+        height: 28px;
+        max-height: 28px;
+        margin: 0 auto auto auto;
+    }
+
+    .bonus-content {
+        margin: 0 auto auto auto; 
+        gap: 14px;
+        min-height: auto;
+        text-align: center;
+        width: 100%;
+        max-width: 340px;
+        flex-shrink: 0;
+    }
+
+    .bonus-title {
+        font-size: 26px;
+        line-height: 115%;
+    }
+
+    .bonus-subtitle {
+        font-size: 15px;
+        line-height: 140%;
+    }
+
+    .btn-bonus-final {
+        width: 100%;
+        max-width: 340px;
+        height: 56px;
+        font-size: 18px;
+        padding: 0;
+        margin: 0 auto 10px auto;
+    }
+}
