@@ -32,7 +32,8 @@ const episodes = [
         correctAnswer: 'Гол',
         imageSrc: 'imgs/1.png',
         winTitle: 'ВЫ УГАДАЛИ!',
-        winText: 'Ван Перси забил один из самых эффектных голов ЧМ-2014 — ударом головой в прыжке в матче Нидерланды — Испания',
+        // ИСПРАВЛЕНО: предлог «в» перенесен, третья строка зафиксирована
+        winText: 'Ван Перси забил один из самых эффектных голов ЧМ-2014 — ударом головой в прыжке<br>в матче Нидерланды — Испания',
         loseTitle: 'Почти, но момент оказался хитрее',
         loseText: 'Ван Перси выбрал неожиданное продолжение и забил легендарный головой в прыжке на ЧМ-2014'
     },
@@ -52,7 +53,8 @@ const episodes = [
         correctAnswer: 'Гол',
         imageSrc: 'imgs/3.png',
         winTitle: 'ВЫ УГАДАЛИ!',
-        winText: 'Мбаппе забил один из самых ярких голов ЧМ-2022 — ударом с лёта в финале Аргентина — Франция',
+        // ИСПРАВЛЕНО: перенос по строкам и «Аргентина — Франция» на новой строке
+        winText: 'Мбаппе забил один из самых ярких голов\nЧМ-2022 — ударом с лёта в финале\nАргентина — Франция',
         loseTitle: 'Почти, но момент оказался хитрее',
         loseText: 'Мбаппе выбрал эффектное продолжение атаки и забил с лёта в финале ЧМ-2022, вернув Францию в игру'
     }
@@ -136,8 +138,9 @@ function showResultScreen() {
     resultImage.src = episode.imageSrc;
     playZone.classList.add('hidden');
 
-    resultTitle.textContent = userGuessedCorrectly ? episode.winTitle : episode.loseTitle;
-    resultSubtitle.textContent = userGuessedCorrectly ? episode.winText : episode.loseText;
+// Было .textContent, заменяем на .innerHTML
+    resultTitle.innerHTML = userGuessedCorrectly ? episode.winTitle : episode.loseTitle;
+    resultSubtitle.innerHTML = userGuessedCorrectly ? episode.winText : episode.loseText;
 
     // Проверка: если это последний эпизод (индекс 2)
     if (currentEpisodeIndex === episodes.length - 1) {
@@ -160,23 +163,23 @@ function showBonusScreen(isFinishedAllRounds = false) {
     resultZone.classList.add('hidden');
     
     if (!isFinishedAllRounds) {
-        // Если игрок нажал "Забрать бонус" раньше времени (не дойдя до конца)
-        bonusTitle.textContent = 'БОНУС ЖДЁТ ТЕБЯ';
-        bonusSubtitle.textContent = 'Переходи на сайт Бет-М, забирай фрибет и делай просмотр матчей ярче';
+        bonusTitle.innerHTML = 'БОНУС ЖДЁТ ТЕБЯ';
+        bonusSubtitle.innerHTML = 'Переходи на сайт Бет-М, забирай фрибет и делай просмотр матчей ярче';
     } else {
-        // Игрок дошел до самого конца, проверяем количество правильных прогнозов
         if (correctAnswersCount === 3) {
-            bonusTitle.textContent = 'ИДЕАЛЬНОЕ ПОПАДАНИЕ';
-            bonusSubtitle.textContent = 'Три из трёх: ты угадал все развязки легендарных моментов ЧМ! Забирай бонус от Бет-М';
+            bonusTitle.innerHTML = 'ИДЕАЛЬНОЕ ПОПАДАНИЕ';
+            // ИСПРАВЛЕНО: второе предложение перенесено на новую строку
+            bonusSubtitle.innerHTML = 'Три из трёх: ты угадал все развязки легендарных моментов ЧМ!<br>Забирай бонус от Бет-М';
         } else if (correctAnswersCount === 2) {
-            bonusTitle.textContent = 'ВЫ ХОРОШО ЧИТАЕТЕ ИГРУ';
-            bonusSubtitle.textContent = 'Два точных прогноза из трёх — сильный результат. Забирай бонус от Бет-М и продолжай следить за матчами';
+            bonusTitle.innerHTML = 'ВЫ ХОРОШО ЧИТАЕТЕ ИГРУ';
+            // ИСПРАВЛЕНО: второе предложение перенесено на новую строку
+            bonusSubtitle.innerHTML = 'Два точных прогноза из трёх — сильный результат.<br>Забирай бонус от Бет-М и продолжай следить за матчами';
         } else if (correctAnswersCount === 1) {
-            bonusTitle.textContent = 'БОНУС ЖДЁТ ТЕБЯ';
-            bonusSubtitle.textContent = 'Один точный прогноз из трёх. Забирай бонус от Бет-М и продолжай следить за матчами';
+            bonusTitle.innerHTML = 'БОНУС ЖДЁТ ТЕБЯ';
+            bonusSubtitle.innerHTML = 'Один точный прогноз из трёх. Забирай бонус от Бет-М и продолжай следить за матчами';
         } else {
-            bonusTitle.textContent = 'Футбол умеет удивлять';
-            bonusSubtitle.textContent = 'Забирайте приз от Бет-М и смотрите матчи с большим интересом';
+            bonusTitle.innerHTML = 'Футбол умеет удивлять';
+            bonusSubtitle.innerHTML = 'Забирайте приз от Бет-М и смотрите матчи с большим интересом';
         }
     }
 

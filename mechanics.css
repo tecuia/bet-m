@@ -18,19 +18,39 @@ body {
     justify-content: center;
     width: 100%;
     height: 100vh;
+    position: relative; 
+    overflow: hidden;    
+}
+
+.game-screen::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: url('imgs/main.png');
-    background-size: cover;
-    background-position: center;
+    background-size: cover;            
+    background-position: center bottom;    
     background-repeat: no-repeat;
+    transform: scale(1.2);            
+    z-index: -1;                       
 }
 
 .game-zone {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* ИСПРАВЛЕНО: выстраиваем контент строго сверху вниз */
+    justify-content: flex-start; 
     width: 100%;
     height: 100%;
+}
+
+/* ДОБАВЛЕНО: Экраны без логотипа (#play-zone и #result-zone) 
+   получают заголовок ровно в 100px от верхнего края экрана */
+#play-zone, #result-zone {
+    padding-top: 50px;
 }
 
 .game-zone.hidden {
@@ -152,8 +172,10 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.2); 
-    backdrop-filter: blur(4px);
+    background-image: url('imgs/last.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     gap: 60px;
     z-index: 10;
 }
@@ -310,6 +332,10 @@ body {
     color: #ffffff;
     cursor: pointer;
     text-transform: uppercase;
+}
+
+.result-subtitle, .bonus-subtitle {
+    white-space: pre-line !important;
 }
 
 @media (max-width: 767px) {
