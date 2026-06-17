@@ -26,7 +26,6 @@ body {
     display: none !important;
 }
 
-/* Затемнение в верхней части экрана */
 .screen-overlay {
     position: absolute;
     top: 0;
@@ -38,7 +37,6 @@ body {
     z-index: 1;
 }
 
-/* Контент поверх затемнения */
 .logo-container,
 .promo-case,
 .rules-content {
