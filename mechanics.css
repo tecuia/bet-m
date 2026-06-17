@@ -59,8 +59,12 @@ body {
     z-index: 6;
 }
 
-#play-zone, #result-zone {
+#play-zone{
     padding-top: 100px;
+}
+
+#result-zone{
+    padding-top: 20px;
 }
 
 .game-zone.hidden {
