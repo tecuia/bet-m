@@ -29,8 +29,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('imgs/main.png');
-    background-size: 108%;
+    background-image: url('imgs/main.jpg');
+    background-size: 100%;
     background-position: center top;
     background-repeat: no-repeat;
     z-index: -1;
@@ -43,7 +43,7 @@ body {
     left: 0;
     width: 100%;
     height: 675px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+    /*background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);*/
     pointer-events: none;
     z-index: 5;
 }
@@ -117,7 +117,7 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.4);
+    /*background-color: rgba(0, 0, 0, 0.4);*/
     padding-bottom: 40px;
     gap: 24px;
 }
@@ -182,8 +182,8 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-image: url('imgs/main.png');
-    background-size: 108%;
+    background-image: url('imgs/main_b.jpg');
+    background-size: 100%;
     background-position: center top;
     background-repeat: no-repeat;
     gap: 60px;
@@ -280,7 +280,7 @@ body {
     justify-content: flex-start;
     background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(4px);
-    background-image: url('imgs/last.png');
+    background-image: url('imgs/last.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -391,7 +391,7 @@ body {
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('imgs/main_mob.png');
+        background-image: url('imgs/main_mob.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -490,8 +490,8 @@ body {
         justify-content: flex-start;
         align-items: center;
         padding: 16px 20px 20px 20px;
-        gap: 16px;
-        background-image: url('imgs/last_mob.png');
+        gap: 10px;
+        background-image: url('imgs/last_mob.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -517,7 +517,7 @@ body {
         order: 3;
         width: 100%;
         max-width: 380px;
-        margin: 0 auto 12px auto;
+        margin: 0 auto 8px auto;
         display: flex;
         justify-content: center;
         flex-shrink: 0;
@@ -535,9 +535,9 @@ body {
     #result-zone .result-subtitle {
         order: 4;
         font-size: 14px;
-        line-height: 140%;
+        line-height: 110%;
         text-align: center;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
         max-width: 340px;
         width: 100%;
     }

@@ -28,7 +28,7 @@ let correctAnswersCount = 0; // Счетчик правильных ответо
 const episodes = [
     {
         videoSrc: 'vid/video1.mp4',
-        pauseTime: 5.0, 
+        pauseTime: 4.07, 
         correctAnswer: 'Гол',
         imageSrc: 'imgs/1.png',
         winTitle: 'ВЫ УГАДАЛИ!',
@@ -38,7 +38,7 @@ const episodes = [
     },
     {
         videoSrc: 'vid/video2.mp4',
-        pauseTime: 3.4,
+        pauseTime: 0.5,
         correctAnswer: 'Сейв',
         imageSrc: 'imgs/2.png',
         winTitle: 'ВЫ УГАДАЛИ!',
@@ -48,7 +48,7 @@ const episodes = [
     },
     {
         videoSrc: 'vid/video3.mp4',
-        pauseTime: 6.0,
+        pauseTime: 3.0,
         correctAnswer: 'Гол',
         imageSrc: 'imgs/3.png',
         winTitle: 'ВЫ УГАДАЛИ!',
@@ -168,7 +168,7 @@ function showBonusScreen(isFinishedAllRounds = false) {
             bonusSubtitle.innerHTML = 'Три из трёх: ты угадал все развязки легендарных моментов ЧМ!<br>Забирай бонус от Бет-М';
         } else if (correctAnswersCount === 2) {
             bonusTitle.innerHTML = 'ВЫ ХОРОШО ЧИТАЕТЕ ИГРУ';
-            bonusSubtitle.innerHTML = 'Два точных прогноза из трёх — сильный результат.<br>Забирай бонус от Бет-М и продолжай следить за матчами';
+            bonusSubtitle.innerHTML = 'Два точных прогноза из трёх — сильный результат. Забирай бонус от Бет-М <br> и продолжай следить за матчами';
         } else if (correctAnswersCount === 1) {
             bonusTitle.innerHTML = 'БОНУС ЖДЁТ ТЕБЯ';
             bonusSubtitle.innerHTML = 'Один точный прогноз из трёх. Забирай бонус от Бет-М и продолжай следить за матчами';
