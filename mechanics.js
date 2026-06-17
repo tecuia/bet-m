@@ -32,10 +32,9 @@ const episodes = [
         correctAnswer: 'Гол',
         imageSrc: 'imgs/1.png',
         winTitle: 'ВЫ УГАДАЛИ!',
-        // ИСПРАВЛЕНО: предлог «в» перенесен, третья строка зафиксирована
-        winText: 'Ван Перси забил один из самых эффектных голов ЧМ-2014 — ударом головой в прыжке<br>в матче Нидерланды — Испания',
+        winText: 'Ван Перси забил один из самых эффектных<br>голов ЧМ-2014 — ударом головой в прыжке<br>в матче Нидерланды — Испания',
         loseTitle: 'Почти, но момент оказался хитрее',
-        loseText: 'Ван Перси выбрал неожиданное продолжение и забил легендарный головой в прыжке на ЧМ-2014'
+        loseText: 'Ван Перси выбрал неожиданное продолжение<br>и забил легендарный головой в прыжке<br>на ЧМ-2014'
     },
     {
         videoSrc: 'vid/video2.mp4',
@@ -43,9 +42,9 @@ const episodes = [
         correctAnswer: 'Сейв',
         imageSrc: 'imgs/2.png',
         winTitle: 'ВЫ УГАДАЛИ!',
-        winText: 'Касильяс совершил один из самых важных сейвов ЧМ-2010 — отбил удар Роббена ногой в финале Испания — Нидерланды',
+        winText: 'Касильяс совершил один из самых важных<br>сейвов ЧМ-2010 — отбил удар Роббена ногой<br>в финале Испания — Нидерланды',
         loseTitle: 'Почти, но момент оказался хитрее',
-        loseText: 'Касильяс успел среагировать в один из самых напряжённых моментов финала ЧМ-2010 и отбил удар Роббена ногой'
+        loseText: 'Касильяс успел среагировать в один из самых<br>напряжённых моментов финала ЧМ-2010<br>и отбил удар Роббена ногой'
     },
     {
         videoSrc: 'vid/video3.mp4',
@@ -53,10 +52,9 @@ const episodes = [
         correctAnswer: 'Гол',
         imageSrc: 'imgs/3.png',
         winTitle: 'ВЫ УГАДАЛИ!',
-        // ИСПРАВЛЕНО: перенос по строкам и «Аргентина — Франция» на новой строке
-        winText: 'Мбаппе забил один из самых ярких голов\nЧМ-2022 — ударом с лёта в финале\nАргентина — Франция',
+        winText: 'Мбаппе забил один из самых ярких голов<br>ЧМ-2022 — ударом с лёта в финале<br>Аргентина — Франция',
         loseTitle: 'Почти, но момент оказался хитрее',
-        loseText: 'Мбаппе выбрал эффектное продолжение атаки и забил с лёта в финале ЧМ-2022, вернув Францию в игру'
+        loseText: 'Мбаппе выбрал эффектное продолжение атаки<br>и забил с лёта в финале ЧМ-2022,<br>вернув Францию в игру'
     }
 ];
 
@@ -138,14 +136,13 @@ function showResultScreen() {
     resultImage.src = episode.imageSrc;
     playZone.classList.add('hidden');
 
-// Было .textContent, заменяем на .innerHTML
     resultTitle.innerHTML = userGuessedCorrectly ? episode.winTitle : episode.loseTitle;
     resultSubtitle.innerHTML = userGuessedCorrectly ? episode.winText : episode.loseText;
 
     // Проверка: если это последний эпизод (индекс 2)
     if (currentEpisodeIndex === episodes.length - 1) {
-        btnActionContinue.classList.add('hidden'); // Убираем кнопку "Продолжить"
-        btnActionBonus.classList.remove('hidden');   // Оставляем только кнопку "Забрать бонус"
+        btnActionContinue.classList.add('hidden'); 
+        btnActionBonus.classList.remove('hidden');   
     } else {
         btnActionContinue.classList.remove('hidden');
         if (userGuessedCorrectly) {
@@ -168,11 +165,9 @@ function showBonusScreen(isFinishedAllRounds = false) {
     } else {
         if (correctAnswersCount === 3) {
             bonusTitle.innerHTML = 'ИДЕАЛЬНОЕ ПОПАДАНИЕ';
-            // ИСПРАВЛЕНО: второе предложение перенесено на новую строку
             bonusSubtitle.innerHTML = 'Три из трёх: ты угадал все развязки легендарных моментов ЧМ!<br>Забирай бонус от Бет-М';
         } else if (correctAnswersCount === 2) {
             bonusTitle.innerHTML = 'ВЫ ХОРОШО ЧИТАЕТЕ ИГРУ';
-            // ИСПРАВЛЕНО: второе предложение перенесено на новую строку
             bonusSubtitle.innerHTML = 'Два точных прогноза из трёх — сильный результат.<br>Забирай бонус от Бет-М и продолжай следить за матчами';
         } else if (correctAnswersCount === 1) {
             bonusTitle.innerHTML = 'БОНУС ЖДЁТ ТЕБЯ';

@@ -30,27 +30,37 @@ body {
     width: 100%;
     height: 100%;
     background-image: url('imgs/main.png');
-    background-size: cover;            
-    background-position: center bottom;    
+    background-size: 108%;
+    background-position: center top;
     background-repeat: no-repeat;
-    transform: scale(1.2);            
-    z-index: -1;                       
+    z-index: -1;
+}
+
+/* Затемнение в верхней части экрана */
+.screen-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 675px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+    pointer-events: none;
+    z-index: 5;
 }
 
 .game-zone {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* ИСПРАВЛЕНО: выстраиваем контент строго сверху вниз */
     justify-content: flex-start; 
     width: 100%;
     height: 100%;
+    position: relative;
+    z-index: 6;
 }
 
-/* ДОБАВЛЕНО: Экраны без логотипа (#play-zone и #result-zone) 
-   получают заголовок ровно в 100px от верхнего края экрана */
 #play-zone, #result-zone {
-    padding-top: 50px;
+    padding-top: 100px;
 }
 
 .game-zone.hidden {
@@ -172,9 +182,9 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-image: url('imgs/last.png');
-    background-size: cover;
-    background-position: center;
+    background-image: url('imgs/main.png');
+    background-size: 108%;
+    background-position: center top;
     background-repeat: no-repeat;
     gap: 60px;
     z-index: 10;
@@ -268,8 +278,12 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: rgba(0, 0, 0, 0.2); 
+    background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(4px);
+    background-image: url('imgs/last.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding-top: 40px;
     padding-bottom: 40px;
     z-index: 20;
@@ -340,32 +354,54 @@ body {
 
 @media (max-width: 767px) {
     
+    .screen-overlay {
+        height: 300px;
+    }
+
     .game-zone {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        padding: 20px 20px;
+        justify-content: flex-start;
+        padding: 16px 20px 20px 20px;
         height: 100vh;
         box-sizing: border-box;
     }
 
+    /* Логотип для play-zone */
     #play-zone::before {
         content: "";
         display: block;
         width: 100%;
-        height: 28px;
+        max-width: 126px;
+        height: 40px;
         background-image: url('imgs/logo.png');
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
-        margin-bottom: auto;
+        margin-bottom: 120px;
+        flex-shrink: 0;
+        margin-top: -70px;
+    }
+
+    .game-screen::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('imgs/main_mob.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -1;
     }
 
     .game-title {
-        font-size: 24px;
+        font-size: 22px;
         line-height: 115%;
-        max-width: 260px;
+        max-width: 280px;
         text-align: center;
         margin: 0 auto 6px auto;
     }
@@ -385,7 +421,7 @@ body {
         background-color: transparent;
         overflow: visible;
         border-radius: 0;
-        margin: 0 auto auto auto;
+        margin: 0 auto 0 auto;
         flex-shrink: 0;
     }
 
@@ -396,6 +432,7 @@ body {
         object-fit: cover;
         border-radius: 14px;
         background-color: #000000;
+        margin-top: 20px;
     }
 
     .quiz-overlay {
@@ -414,13 +451,13 @@ body {
     .quiz-options {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        gap: 8px;
         width: 100%;
     }
 
     .quiz-btn {
         width: 100%;
-        height: 46px;
+        height: 44px;
         font-size: 15px;
         padding: 0 10px;
     }
@@ -428,49 +465,59 @@ body {
     .btn-next {
         width: 100%;
         max-width: 340px;
-        height: 52px;
-        font-size: 18px;
+        height: 50px;
+        font-size: 17px;
     }
 
+    /* Результат на мобилках */
     #result-zone::before {
         content: "";
         display: block;
         width: 100%;
-        height: 28px;
+        max-width: 126px;
+        height: 40px;
         background-image: url('imgs/logo.png');
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
-        margin-bottom: auto;
-        order: 1;
+        margin-bottom: 120px;
+        flex-shrink: 0;
+        margin-top: 15px;
     }
 
     #result-zone.result-layout {
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        padding: 20px 20px;
-        gap: 0;
+        padding: 16px 20px 20px 20px;
+        gap: 16px;
+        background-image: url('imgs/last_mob.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: #000000;
     }
 
     #result-zone .result-info {
         display: contents;
+        width: 100%;
     }
 
     #result-zone .result-title {
         order: 2;
-        font-size: 26px;
+        font-size: 24px;
         line-height: 110%;
         text-align: center;
-        margin: 0 auto 14px auto;
+        margin: 0 auto 10px auto;
         width: 100%;
+        max-width: 340px;
     }
 
     #result-zone .result-media {
         order: 3;
         width: 100%;
-        max-width: 340px;
-        margin: 0 auto 14px auto;
+        max-width: 380px;
+        margin: 0 auto 12px auto;
         display: flex;
         justify-content: center;
         flex-shrink: 0;
@@ -479,17 +526,18 @@ body {
     #result-zone .img-result {
         width: 100%;
         height: auto;
-        max-height: 200px;
+        max-height: 220px;
         object-fit: cover;
         border-radius: 14px;
+        border: 3px solid #ffffff;
     }
 
     #result-zone .result-subtitle {
         order: 4;
-        font-size: 15px;
+        font-size: 14px;
         line-height: 140%;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
         max-width: 340px;
         width: 100%;
     }
@@ -498,58 +546,54 @@ body {
         order: 5;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
         width: 100%;
         max-width: 340px;
-        margin: 0 auto auto auto;
+        margin: 0 auto 0 auto;
     }
 
     #result-zone .btn-action {
         width: 100%;
-        height: 52px;
-        font-size: 16px;
+        height: 50px;
+        font-size: 15px;
         margin: 0;
+        padding: 0 16px;
     }
 
-    #bonus-zone.bonus-layout {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 20px;
+     #bonus-zone.bonus-layout {
+        background-image: url('imgs/last.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 16px 20px 20px 20px;
+        justify-content: flex-start;
     }
 
-    .bonus-logo {
-        height: 28px;
-        max-height: 28px;
-        margin: 0 auto auto auto;
+    #bonus-zone .bonus-logo {
+        max-width: 126px;
+        height: 40px;
+        margin-bottom: 240px;
+        margin-top: 15px;
     }
 
-    .bonus-content {
-        margin: 0 auto auto auto; 
-        gap: 14px;
-        min-height: auto;
-        text-align: center;
-        width: 100%;
+    #bonus-zone .bonus-content {
+        gap: 12px;
         max-width: 340px;
-        flex-shrink: 0;
     }
 
-    .bonus-title {
-        font-size: 26px;
-        line-height: 115%;
+    #bonus-zone .bonus-title {
+        font-size: 28px;
+        line-height: 110%;
     }
 
-    .bonus-subtitle {
+    #bonus-zone .bonus-subtitle {
         font-size: 15px;
         line-height: 140%;
     }
 
-    .btn-bonus-final {
-        width: 100%;
+    #bonus-zone .btn-bonus-final {
         max-width: 340px;
         height: 56px;
         font-size: 18px;
-        padding: 0;
-        margin: 0 auto 10px auto;
     }
 }
