@@ -192,8 +192,8 @@ function showBonusScreen(isFinishedAllRounds = false) {
         bonusSubtitle.innerHTML = 'Переходи на сайт Бет-М, забирай фрибет и делай просмотр матчей ярче';
     } else {
         if (correctAnswersCount === 3) {
-            bonusTitle.innerHTML = 'ИДЕАЛЬНОЕ ПОПАДАНИЕ';
-            bonusSubtitle.innerHTML = 'Три из трёх: ты угадал все развязки легендарных моментов ЧМ!<br>Забирай бонус от Бет-М';
+            bonusTitle.innerHTML = 'ИДЕАЛЬНОЕ<br class="mobile-break"> ПОПАДАНИЕ';
+            bonusSubtitle.innerHTML = 'Три из трёх: ты угадал все развязки легендарных <br class="mobile-break"> моментов ЧМ! Забирай бонус от Бет-М';
         } else if (correctAnswersCount === 2) {
             bonusTitle.innerHTML = 'ВЫ ХОРОШО<br class="mobile-break"> ЧИТАЕТЕ ИГРУ';
             bonusSubtitle.innerHTML = 'Два точных прогноза из трёх — сильный <br class="mobile-break"> результат. Забирай бонус от Бет-М <br> и продолжай следить за матчами';
@@ -202,7 +202,7 @@ function showBonusScreen(isFinishedAllRounds = false) {
             bonusSubtitle.innerHTML = 'Один точный прогноз из трёх. Забирай бонус от Бет-М и продолжай следить за матчами';
         } else {
             bonusTitle.innerHTML = 'Футбол умеет удивлять';
-            bonusSubtitle.innerHTML = 'Забирайте приз от Бет-М и смотрите матчи с большим интересом';
+            bonusSubtitle.innerHTML = 'Забирайте приз от Бет-М и смотрите матчи с&nbsp;большим&nbsp;интересом';
         }
     }
 
