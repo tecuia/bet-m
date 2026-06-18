@@ -10,12 +10,12 @@
 </head>
 <body>
 
-    <section id="main-screen" class="screen main-screen">
+    <!-- ==================== ГЛАВНЫЙ ЭКРАН ==================== -->
+    <section id="main-screen" class="screen">
         <div class="screen-overlay"></div>
         <div class="logo-container">
             <img src="imgs/logo.png" alt="Logo" class="logo">
         </div>
-        
         <div class="promo-case">
             <h1 class="title">ФУТБОЛЬНАЯ ИНТУИЦИЯ</h1>
             <p class="subtitle">Угадай, что будет дальше и получи бонус от Бет-М</p>
@@ -23,22 +23,80 @@
         </div>
     </section>
 
-    <section id="rules-screen" class="screen rules-screen hidden">
+<!-- ==================== ЭКРАН ПРАВИЛ ==================== -->
+<section id="rules-screen" class="screen hidden">
+    <div class="screen-overlay"></div>
+    <div class="logo-container">
+        <img src="imgs/logo.png" alt="Logo" class="logo">
+    </div>
+    <div class="rules-content">
+        <h2 class="rules-title">ПРАВИЛА ИГРЫ</h2>
+        <div class="rules-container">
+            <!-- Карточка 1 -->
+            <div class="rule-card">
+                <span class="rule-card-number">01</span>
+                <p class="rule-card-text">Смотри легендарные<br class="mobile-break"> моменты с ЧМ прошлых лет</p>
+            </div>
+            <!-- Карточка 2 -->
+            <div class="rule-card">
+                <span class="rule-card-number">02</span>
+                <p class="rule-card-text">Угадывай, что будет дальше</p>
+            </div>
+            <!-- Карточка 3 -->
+            <div class="rule-card">
+                <span class="rule-card-number">03</span>
+                <p class="rule-card-text">Получи приз от Бет-М<br class="mobile-break"> и сделай свой просмотр ярче</p>
+            </div>
+        </div>
+        <button class="btn-continue">Продолжить</button>
+    </div>
+</section>
+
+    <!-- ==================== ИГРОВОЙ ЭКРАН ==================== -->
+    <section id="game-screen" class="screen game-screen hidden">
         <div class="screen-overlay"></div>
-        <div class="logo-container">
-            <img src="imgs/logo.png" alt="Logo" class="logo">
+
+        <!-- PLAY ZONE -->
+<div id="play-zone" class="game-zone">
+    <h2 class="game-title">ЧТО ПРОИЗОЙДЁТ ДАЛЬШЕ?</h2>
+    <div id="episode-counter" class="game-counter">1/3</div>
+    <div class="video-container">
+        <video id="game-video" src="vid/video1.mp4" playsinline muted></video>
+        <div id="quiz-overlay" class="quiz-overlay hidden">
+            <div class="quiz-options">
+                <button class="quiz-btn" data-answer="Гол">Гол</button>
+                <button class="quiz-btn" data-answer="Сейв">Сейв</button>
+                <button class="quiz-btn" data-answer="Удар мимо">Удар мимо</button>
+                <button class="quiz-btn" data-answer="Офсайд">Офсайд</button>
+            </div>
+            <button id="btn-next" class="btn-next">ДАЛЕЕ</button>
+        </div>
+    </div>
+</div>
+
+        <!-- RESULT ZONE -->
+        <div id="result-zone" class="game-zone result-layout hidden">
+            <div class="result-info">
+                <h3 id="result-title" class="result-title">ВЫ УГАДАЛИ!</h3>
+                <p id="result-subtitle" class="result-subtitle">Ван Перси забил один из самых эффектных голов ЧМ-2014 — ударом головой в прыжке в матче Нидерланды — Испания.</p>
+                <div class="result-buttons">
+                    <button id="btn-action-continue" class="btn-action red">ПРОДОЛЖИТЬ ИГРУ</button>
+                    <button id="btn-action-bonus" class="btn-action blue">ПОЛУЧИТЬ БОНУС</button>
+                </div>
+            </div>
+            <div class="result-media">
+                <img id="result-image" src="imgs/1.jpg" alt="Эпизод" class="img-result">
+            </div>
         </div>
 
-        <div class="rules-content">
-            <h2 class="rules-title">ПРАВИЛА ИГРЫ</h2>
-            
-            <div class="rules-container">
-                <img src="imgs/rule1.png" alt="Правило 1" class="rule-card">
-                <img src="imgs/rule2.png" alt="Правило 2" class="rule-card">
-                <img src="imgs/rule3.png" alt="Правило 3" class="rule-card">
+        <!-- BONUS ZONE -->
+        <div id="bonus-zone" class="game-zone bonus-layout hidden">
+            <img src="imgs/logo.png" alt="Бет-М" class="bonus-logo">
+            <div class="bonus-content">
+                <h3 class="bonus-title">ФУТБОЛ УМЕЕТ УДИВЛЯТЬ</h3>
+                <p class="bonus-subtitle">Забирайте приз от Бет-М и смотрите матчи с большим интересом</p>
+                <button id="btn-get-bonus-final" class="btn-bonus-final">ЗАБРАТЬ БОНУС</button>
             </div>
-
-            <button class="btn-continue">Продолжить</button>
         </div>
     </section>
 
