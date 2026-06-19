@@ -55,7 +55,7 @@ const episodes = [
         pauseTime: 4.07,
         correctAnswer: 'Гол',
         imageSrc: 'imgs/1.jpg',
-        winTitle: 'ВЫ УГАДАЛИ!',
+        winTitle: 'ТЫ УГАДАЛ!',
         winText: 'Ван Перси забил один из самых эффектных голов <br class="mobile-break">ЧМ-2014 — ударом головой в прыжке<br>в матче Нидерланды — Испания',
         loseTitle: 'Почти, но момент оказался хитрее',
         loseText: 'Ван Перси выбрал неожиданное продолжение<br>и забил легендарный головой в прыжке<br>на ЧМ-2014'
@@ -65,7 +65,7 @@ const episodes = [
         pauseTime: 1.5,
         correctAnswer: 'Сейв',
         imageSrc: 'imgs/2.jpg',
-        winTitle: 'ВЫ УГАДАЛИ!',
+        winTitle: 'ТЫ УГАДАЛ!',
         winText: 'Касильяс совершил один из самых важных<br>сейвов ЧМ-2010 — отбил удар Роббена ногой<br>в финале Испания — Нидерланды',
         loseTitle: 'Почти, но момент оказался хитрее',
         loseText: 'Касильяс успел среагировать в один из самых<br>напряжённых моментов финала ЧМ-2010<br>и отбил удар Роббена ногой'
@@ -75,7 +75,7 @@ const episodes = [
         pauseTime: 3.5,
         correctAnswer: 'Гол',
         imageSrc: 'imgs/3.jpg',
-        winTitle: 'ВЫ УГАДАЛИ!',
+        winTitle: 'ТЫ УГАДАЛ!',
         winText: 'Мбаппе забил один из самых ярких голов<br>ЧМ-2022 — ударом с лёта в финале<br>Аргентина — Франция',
         loseTitle: 'Почти, но момент оказался хитрее',
         loseText: 'Мбаппе выбрал эффектное продолжение атаки<br>и забил с лёта в финале ЧМ-2022,<br>вернув Францию в игру'
@@ -195,14 +195,14 @@ function showBonusScreen(isFinishedAllRounds = false) {
             bonusTitle.innerHTML = 'ИДЕАЛЬНОЕ<br class="mobile-break"> ПОПАДАНИЕ';
             bonusSubtitle.innerHTML = 'Три из трёх: ты угадал все развязки легендарных <br class="mobile-break"> моментов ЧМ! Забирай бонус от Бет-М';
         } else if (correctAnswersCount === 2) {
-            bonusTitle.innerHTML = 'ВЫ ХОРОШО<br class="mobile-break"> ЧИТАЕТЕ ИГРУ';
+            bonusTitle.innerHTML = 'ТЫ ХОРОШО<br class="mobile-break"> ЧИТАЕШЬ ИГРУ';
             bonusSubtitle.innerHTML = 'Два точных прогноза из трёх — сильный <br class="mobile-break"> результат. Забирай бонус от Бет-М <br> и продолжай следить за матчами';
         } else if (correctAnswersCount === 1) {
             bonusTitle.innerHTML = 'БОНУС ЖДЁТ ТЕБЯ';
             bonusSubtitle.innerHTML = 'Один точный прогноз из трёх. Забирай бонус от Бет-М и продолжай следить за матчами';
         } else {
             bonusTitle.innerHTML = 'Футбол умеет удивлять';
-            bonusSubtitle.innerHTML = 'Забирайте приз от Бет-М и смотрите матчи с&nbsp;большим&nbsp;интересом';
+            bonusSubtitle.innerHTML = 'Забирай приз от Бет-М и смотри матчи с&nbsp;большим&nbsp;интересом';
         }
     }
 
