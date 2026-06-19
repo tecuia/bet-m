@@ -56,7 +56,7 @@ const episodes = [
         correctAnswer: 'Гол',
         imageSrc: 'imgs/1.jpg',
         winTitle: 'ТЫ УГАДАЛ!',
-        winText: 'Ван Перси забил один из самых эффектных голов <br class="mobile-break">ЧМ-2014&nbsp;—&nbsp;ударом головой в&nbsp;прыжке в матче Нидерланды&nbsp;—&nbsp;Испания',
+        winText: 'Ван Перси забил один из самых эффектных голов <br class="mobile-break">ЧМ-2014&nbsp;—&nbsp;ударом головой в&nbsp;прыжке в&nbspматче Нидерланды&nbsp;—&nbsp;Испания',
         loseTitle: 'Почти, но момент оказался хитрее',
         loseText: 'Ван Перси выбрал неожиданное продолжение<br>и забил легендарный головой в&nbsp;прыжке<br>на ЧМ-2014'
     },
