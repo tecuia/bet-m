@@ -712,79 +712,77 @@ body {
 }
 
 @media (max-width: 767px) {
-    /* ===== БАЗОВЫЕ НАСТРОЙКИ ===== */
     .screen {
-        padding: 0 clamp(12px, 3vw, 24px) clamp(8px, 2vh, 20px);
+        padding: 0 0 20px;
         height: 100dvh;
         max-height: 100dvh;
-        overflow: hidden;
-        background-color: #000;
         justify-content: flex-start;
+        overflow-y: auto;
+        background-color: #000;
     }
     .screen-overlay {
         display: none;
     }
-
-    /* ===== ЛОГОТИП ===== */
     .logo-container {
         margin: 0;
-        padding: clamp(12px, 3vh, 40px) 0 0;
+        padding: 40px 0 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
         flex-shrink: 0;
     }
     .logo {
-        max-width: clamp(100px, 30vw, 126px);
-        height: clamp(28px, 5vh, 40px);
+        max-width: 126px;
+        height: 40px;
         width: auto;
         object-fit: contain;
     }
-
-    /* ===== ГЛАВНЫЙ ЭКРАН ===== */
     #main-screen {
         background-image: url('imgs/back_mob.jpg');
         background-size: cover;
         background-position: center;
-        padding: 0 clamp(12px, 3vw, 24px) clamp(8px, 2vh, 20px);
-        justify-content: flex-start;
+        padding: 0 20px 20px;
     }
     #main-screen .logo-container {
-        margin-bottom: clamp(4px, 1vh, 16px);
+        margin-bottom: 0;
+        animation-delay: 0.2s;
     }
     .promo-case {
         max-width: 342px;
+        margin: 58px auto auto;
+        gap: 8px;
         width: 100%;
-        margin: clamp(20px, 6vh, 50px) auto auto;
-        gap: clamp(4px, 1vh, 12px);
-        flex: 0 0 auto;
     }
     .title {
-        font-size: clamp(20px, 5vw, 24px);
-        line-height: 1.1;
+        font-size: 24px;
         white-space: nowrap;
+        line-height: 110%;
         letter-spacing: 0.04em;
     }
     .subtitle {
-        font-size: clamp(12px, 3vw, 14px);
-        line-height: 1.3;
-        margin-bottom: clamp(2px, 0.5vh, 8px);
+        font-size: 14px;
+        white-space: normal;
+        line-height: 130%;
+        margin-bottom: 12px;
     }
     .btn-start {
         width: 100%;
         max-width: 342px;
-        height: clamp(44px, 7vh, 60px);
-        font-size: clamp(16px, 4vw, 20px);
+        height: 60px;
+        font-size: 20px;
         border-radius: 12px;
-        margin-top: clamp(2px, 0.5vh, 8px);
+        margin-top: 0;
     }
-
-    /* ===== ЭКРАН ПРАВИЛ ===== */
     #rules-screen {
         background-image: url('imgs/main_mob.png');
         background-size: cover;
         background-position: center;
-        padding: 0 clamp(12px, 3vw, 24px) clamp(8px, 2vh, 20px);
+        padding: 0 24px 20px;
     }
     #rules-screen .logo-container {
-        margin-bottom: clamp(2px, 0.5vh, 12px);
+        margin-bottom: 0;
+        opacity: 1;
+        animation: none;
     }
     .rules-content {
         max-width: 342px;
@@ -793,66 +791,81 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: clamp(8px, 2vh, 30px);
-        flex: 0 0 auto;
-        padding-top: clamp(8px, 2vh, 30px);
+        gap: 0;
+        flex: 1;
         justify-content: flex-start;
+        padding-top: 60px;
     }
     .rules-title {
-        font-size: clamp(20px, 5vw, 24px);
+        font-size: 24px;
         max-width: 100%;
-        margin: 0 0 clamp(4px, 1vh, 20px);
-        text-align: center;
-        line-height: 1.1;
         letter-spacing: 0.04em;
+        margin: 0 0 40px 0;
+        text-align: center;
+        line-height: 100%;
     }
+
     .rules-container {
         display: flex;
         flex-direction: column;
-        gap: clamp(4px, 1vh, 10px);
+        gap: 8px;
         max-width: 342px;
+        margin: 0 auto 42px auto;
         width: 100%;
-        margin: 0 auto;
-        flex: 0 0 auto;
     }
     .rule-card {
-        flex: 0 0 auto;
+        flex: 0 0 140px;
         width: 100%;
         max-width: 342px;
-        min-height: clamp(80px, 18vh, 140px);
-        height: auto;
+        height: 140px;
         border-radius: 12px;
         background: #0019FF;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: clamp(6px, 1.5vh, 20px) clamp(8px, 2vw, 20px);
+        padding: 20px 16px;
         text-align: center;
-        box-sizing: border-box;
+        border: none;
+        backdrop-filter: none;
+        transition: none;
+    }
+    .rule-card:hover {
+        transform: none;
+        box-shadow: none;
+        background: #0019FF;
     }
     .rule-card-number {
-        font-size: clamp(28px, 7vw, 44px);
-        line-height: 1;
-        margin-bottom: clamp(2px, 0.5vh, 8px);
+        font-size: 40px;
+        line-height: 100%;
+        margin-bottom: 12px;
+        width: auto;
+        color: #fff;
+        font-family: 'Furore', sans-serif;
+        display: block;
     }
     .rule-card-text {
-        font-size: clamp(12px, 3vw, 16px);
-        line-height: 1.1;
+        font-size: 16px;
+        line-height: 110%;
         max-width: 232px;
+        color: #fff;
+        font-family: 'Helvetica', Arial, sans-serif;
         margin: 0 auto;
+        text-align: center;
+        width: 100%;
     }
     .btn-continue {
         width: 100%;
         max-width: 342px;
-        height: clamp(44px, 7vh, 60px);
-        font-size: clamp(16px, 4vw, 20px);
+        height: 60px;
+        font-size: 20px;
         border-radius: 12px;
-        margin: clamp(6px, 1.5vh, 20px) auto 0;
+        margin: 0 auto;
         flex-shrink: 0;
     }
-
-    /* ===== ИГРОВОЙ ЭКРАН ===== */
+    .btn-start, .btn-continue {
+        margin-top: 0;
+    }
     #game-screen {
         padding: 0;
         background: #000;
@@ -866,43 +879,42 @@ body {
     #game-screen .screen-overlay {
         display: none;
     }
-
     #play-zone {
-        padding: clamp(4px, 1vh, 16px) clamp(12px, 3vw, 24px) clamp(8px, 2vh, 20px);
+        padding: 0 24px 20px;
         justify-content: flex-start;
         align-items: center;
         height: 100%;
         width: 100%;
         max-width: 390px;
         margin: 0 auto;
-        display: flex;
-        flex-direction: column;
     }
     #play-zone::before {
         content: "";
         display: block;
-        width: clamp(80px, 25vw, 126px);
-        height: clamp(24px, 5vh, 40px);
+        width: 126px;
+        height: 40px;
         background-image: url('imgs/logo.png');
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
-        margin: clamp(4px, 1vh, 16px) auto clamp(4px, 1vh, 16px);
+        margin: 40px auto 40px;
         flex-shrink: 0;
+        opacity: 1;
+        animation: none;
     }
     .game-title {
-        font-size: clamp(18px, 5vw, 24px);
+        font-size: 24px;
         max-width: 342px;
-        margin: clamp(2px, 0.5vh, 8px) auto clamp(2px, 0.5vh, 8px);
-        line-height: 1.2;
+        margin: 20px auto -20px;   
+        line-height: 120%;
         letter-spacing: 0.04em;
         text-align: center;
         width: 100%;
     }
     .game-counter {
-        font-size: clamp(12px, 3vw, 16px);
-        margin-bottom: clamp(4px, 1vh, 16px);
-        line-height: 1.2;
+        font-size: 16px;
+        margin-bottom: 30px;
+        line-height: 120%;
         text-align: center;
         width: 100%;
     }
@@ -912,11 +924,12 @@ body {
         align-items: center;
         max-width: 342px;
         width: 100%;
-        flex: 0 0 auto;
+        height: auto;
         background: transparent;
         overflow: visible;
         border-radius: 0;
         margin: 0 auto;
+        flex-shrink: 0;
     }
     #game-video {
         width: 100%;
@@ -925,8 +938,8 @@ body {
         object-fit: cover;
         border-radius: 12px;
         background: #000;
+        margin: 0;
     }
-
     #play-zone .quiz-overlay {
         position: relative !important;
         width: 100% !important;
@@ -935,36 +948,37 @@ body {
         left: auto !important;
         background: transparent !important;
         padding: 0 !important;
-        margin-top: clamp(4px, 1vh, 12px);
-        gap: clamp(4px, 1vh, 12px);
+        margin-top: 16px;
+        gap: 16px;
         border-radius: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        flex: 0 0 auto;
     }
     #play-zone .quiz-overlay.hidden {
         display: none !important;
     }
     .quiz-options {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(4px, 1vh, 8px);
+        grid-template-columns: 167px 167px;
+        gap: 8px;
         max-width: 342px;
         width: 100%;
         justify-content: center;
+        margin: 0 auto;
     }
     .quiz-btn {
-        width: 100%;
-        height: clamp(30px, 5vh, 44px);
-        padding: 2px 4px;
-        font-size: clamp(11px, 2.8vw, 16px);
-        line-height: 1.1;
+        width: 167px;
+        height: 40px;
+        padding: 9px 24px 7px;
+        font-size: 14px;
+        line-height: 110%;
         border-radius: 12px;
         background: #FFFFFF;
         color: #2D2D2D;
         border: none;
+        transition: background-color 0.2s, transform 0.2s;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -975,50 +989,65 @@ body {
         background: #0019FF;
         color: #FFFFFF;
     }
+    .quiz-btn:hover {
+        transform: none;
+    }
     .btn-next {
-        width: 100%;
-        max-width: 342px;
-        height: clamp(40px, 7vh, 60px);
-        font-size: clamp(16px, 4vw, 20px);
+        width: 342px;
+        max-width: 100%;
+        height: 60px;
+        font-size: 20px;
         border-radius: 12px;
         background: #FA2529;
         color: #fff;
         border: none;
         font-family: 'Furore', sans-serif;
         cursor: pointer;
-        margin-top: clamp(2px, 0.5vh, 8px);
+        transition: background-color 0.2s, transform 0.2s;
+        margin-top: 8px;
         flex-shrink: 0;
     }
+    .btn-next:hover {
+        transform: none;
+    }
 
-    /* ===== ЭКРАН РЕЗУЛЬТАТА ===== */
+    /* ===== МОБИЛЬНЫЙ ЭКРАН РЕЗУЛЬТАТА (исправлен) ===== */
+    #result-zone {
+        padding: 0;
+    }
+
     #result-zone.result-layout {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        padding: clamp(4px, 1vh, 16px) clamp(12px, 3vw, 24px) clamp(8px, 2vh, 20px);
+        padding: 0 24px 20px;
         gap: 0;
         background: none;
         height: 100dvh;
-        overflow: hidden;
+        overflow-y: auto;
         width: 100%;
         box-sizing: border-box;
         position: relative;
     }
+
+    /* Логотип (поверх фона) */
     #result-zone.result-layout::before {
         content: "";
         display: block;
-        width: clamp(80px, 25vw, 126px);
-        height: clamp(24px, 5vh, 40px);
+        width: 126px;
+        height: 40px;
         background-image: url('imgs/logo.png');
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
-        margin: clamp(4px, 1vh, 16px) auto clamp(4px, 1vh, 16px);
+        margin: 40px auto 40px;
         flex-shrink: 0;
         order: 0;
         position: relative;
         z-index: 2;
     }
+
+    /* Фон с блюром и градиентом */
     #result-zone.result-layout::after {
         content: '';
         position: absolute;
@@ -1032,11 +1061,14 @@ body {
         z-index: 0;
         pointer-events: none;
     }
+
+    /* Контент поверх фона */
     #result-zone .result-info {
         display: contents;
         width: 100%;
         order: 1;
     }
+
     #result-zone .result-title,
     #result-zone .result-media,
     #result-zone .result-subtitle,
@@ -1044,12 +1076,13 @@ body {
         position: relative;
         z-index: 2;
     }
+
     #result-zone .result-title {
-        font-size: clamp(18px, 5vw, 24px);
-        line-height: 1.1;
+        font-size: 24px;
+        line-height: 100%;
         letter-spacing: 0.04em;
         text-align: center;
-        margin: clamp(2px, 0.5vh, 8px) auto clamp(4px, 1vh, 16px);
+        margin: 20px auto 30px;
         max-width: 342px;
         width: 100%;
         order: 1;
@@ -1057,169 +1090,173 @@ body {
         color: #fff;
         text-transform: uppercase;
     }
+
     #result-zone .result-media {
         width: 342px;
         max-width: 100%;
-        margin: 0 auto;
+        margin: 12px auto 0;
         display: flex;
         justify-content: center;
         order: 2;
         box-sizing: border-box;
-        border: clamp(2px, 0.5vw, 4px) solid #FFFFFF;
+        border: 2px solid #FFFFFF;
         border-radius: 12px;
         overflow: hidden;
     }
+
     #result-zone .img-result {
         width: 100%;
         height: auto;
-        max-height: clamp(100px, 25vh, 238px);
+        max-height: 238px;
         object-fit: cover;
         border-radius: 0;
         border: none;
         box-shadow: none;
         display: block;
     }
+
     #result-zone .result-subtitle {
-        font-size: clamp(11px, 2.8vw, 14px);
-        line-height: 1.1;
+        font-size: 14px;
+        line-height: 110%;
         text-align: center;
         color: #fff;
-        margin: clamp(4px, 1vh, 12px) 0 0;
+        margin: 16px 0 0;
         max-width: 342px;
         width: 100%;
         order: 3;
         font-family: 'Helvetica', Arial, sans-serif;
         white-space: normal;
     }
+
     #result-zone .result-buttons {
         display: flex;
         flex-direction: column;
-        gap: clamp(4px, 1vh, 8px);
+        gap: 8px;
         width: 342px;
         max-width: 100%;
-        margin: clamp(8px, 2vh, 30px) auto 0;
+        margin: 40px auto 0;
         order: 4;
-        flex-shrink: 0;
     }
+
     #result-zone .btn-action {
         width: 100%;
-        height: clamp(40px, 7vh, 60px);
-        font-size: clamp(16px, 4vw, 20px);
+        height: 60px;
+        font-size: 20px;
         font-family: 'Furore', sans-serif;
         border-radius: 12px;
-        padding: 0 10px;
+        padding: 18px 32px;
         display: flex;
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
         cursor: pointer;
+        transition: background-color 0.2s, transform 0.2s;
         text-transform: uppercase;
         color: #fff;
         border: none;
     }
+
     #result-zone .btn-action.red {
         background: #FA2529;
     }
+
     #result-zone .btn-action.blue {
         background: #0019FF;
     }
 
-    /* ===== БОНУСНЫЙ ЭКРАН ===== */
+    #result-zone .btn-action.red:hover,
+    #result-zone .btn-action.blue:hover {
+        transform: none;
+    }
+
     #bonus-zone.bonus-layout {
         background-image: url('imgs/last_mob.png');
         background-size: cover;
         background-position: center;
-        padding: clamp(4px, 1vh, 16px) clamp(12px, 3vw, 24px) clamp(8px, 2vh, 20px);
+        padding: 0 24px 20px;
         justify-content: flex-start;
         height: 100dvh;
-        overflow: hidden;
+        overflow-y: auto;
         flex-direction: column;
         align-items: center;
         box-sizing: border-box;
     }
     #bonus-zone .bonus-logo {
-        max-width: clamp(80px, 25vw, 126px);
-        height: clamp(24px, 5vh, 40px);
-        margin: clamp(4px, 1vh, 16px) auto 0;
+        max-width: 126px;
+        height: 40px;
+        margin: 40px auto 0;
         flex-shrink: 0;
         display: block;
         order: 0;
     }
     #bonus-zone .bonus-content {
-        gap: clamp(4px, 1vh, 12px);
-        margin: clamp(4px, 1vh, 12px) auto 0;
+        gap: 0;
+        margin: -30px auto 0;
         flex: 1;
         justify-content: center;
         order: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        max-width: 342px;
     }
+
     #bonus-zone .bonus-title {
-        font-size: clamp(18px, 5vw, 24px);
-        line-height: 1.2;
+        font-size: 24px;
+        line-height: 120%;
         letter-spacing: 0.04em;
         text-align: center;
         color: #FFFFFF;
         width: 100%;
-        margin: 0 0 clamp(2px, 0.5vh, 8px);
+        margin: 0 0 12px 0;
         text-transform: uppercase;
     }
+
     #bonus-zone .bonus-subtitle {
-        font-size: clamp(11px, 2.8vw, 14px);
-        line-height: 1.1;
+        font-size: 14px;
+        line-height: 110%;
         text-align: center;
         color: #FFFFFF;
         width: 100%;
-        margin: 0 0 clamp(6px, 1.5vh, 20px);
+        margin: 0 0 32px 0;
         white-space: normal;
     }
     #bonus-zone .btn-bonus-final {
-        width: 100%;
-        max-width: 342px;
-        height: clamp(40px, 7vh, 60px);
-        font-size: clamp(16px, 4vw, 20px);
+        width: 342px;
+        max-width: 100%;
+        height: 60px;
+        font-size: 20px;
         font-family: 'Furore', sans-serif;
         background: #FA2529;
         border-radius: 12px;
         border: none;
         color: #fff;
         cursor: pointer;
-        padding: 0 10px;
+        padding: 18px 32px;
         text-transform: uppercase;
+        transition: background-color 0.2s, transform 0.2s;
         display: flex;
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
         flex-shrink: 0;
-        margin-top: clamp(2px, 0.5vh, 8px);
+        margin-top: 8px;
     }
-
-    /* ===== ОТМЕНА ХОВЕРА НА МОБИЛЬНЫХ ===== */
-    .btn-start:hover,
-    .btn-continue:hover,
-    .quiz-btn:hover,
-    .btn-next:hover,
-    .btn-action.red:hover,
-    .btn-action.blue:hover,
-    .btn-bonus-final:hover {
-        transform: none !important;
-        transition: none !important;
-    }
-    .btn-start:active,
-    .btn-continue:active,
-    .quiz-btn:active,
-    .btn-next:active,
-    .btn-action:active,
-    .btn-bonus-final:active {
-        transform: scale(0.95) !important;
-        transition: all 0.05s ease;
+    #bonus-zone .btn-bonus-final:hover {
+        transform: none;
     }
 
     .mobile-break {
         display: inline;
+    }
+    .btn-start:hover, .btn-continue:hover,
+    .quiz-btn:hover, .btn-next:hover,
+    .btn-action.red:hover, .btn-action.blue:hover,
+    .btn-bonus-final:hover {
+        transform: none !important;
+        transition: none !important;
+    }
+    .btn-start:active, .btn-continue:active,
+    .quiz-btn:active, .btn-next:active,
+    .btn-action:active, .btn-bonus-final:active {
+        transform: scale(0.95) !important;
+        transition: all 0.05s ease;
     }
 }
 
