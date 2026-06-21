@@ -122,7 +122,7 @@ body {
    ЭКРАН ПРАВИЛ
    ========================================================================== */
 #rules-screen {
-    background-image: url('imgs/main.jpg');
+    background-image: url('imgs/main.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -175,7 +175,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('imgs/main.jpg');
+    background-image: url('imgs/main.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -280,7 +280,7 @@ body {
     justify-content: flex-start;
     background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(4px);
-    background-image: url('imgs/last.jpg');
+    background-image: url('imgs/last.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -720,7 +720,7 @@ body {
         height: 100dvh;
         max-height: 100dvh;
         justify-content: flex-start;
-        overflow-y: auto;
+        overflow: hidden;
         background-color: #000;
     }
     .screen-overlay {
@@ -777,7 +777,7 @@ body {
         margin-top: 0;
     }
     #rules-screen {
-        background-image: url('imgs/main_mob.jpg');
+        background-image: url('imgs/main_mob.png');
         background-size: cover;
         background-position: center;
         padding: 0 24px 20px;
@@ -874,7 +874,7 @@ body {
         background: #000;
     }
     #game-screen::before {
-        background-image: url('imgs/main_mob.jpg');
+        background-image: url('imgs/main_mob.png');
         background-size: cover;
         background-position: center;
         z-index: -1;
@@ -1013,23 +1013,27 @@ body {
     .btn-next:hover {
         transform: none;
     }
+
+    /* ===== МОБИЛЬНЫЙ ЭКРАН РЕЗУЛЬТАТА (исправлен) ===== */
     #result-zone {
         padding: 0;
     }
+
     #result-zone.result-layout {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         padding: 0 24px 20px;
         gap: 0;
-        background-image: url('imgs/result.jpg');
-        background-size: cover;
-        background-position: center;
+        background: none;
         height: 100dvh;
-        overflow-y: auto;
+        overflow: hidden;
         width: 100%;
         box-sizing: border-box;
+        position: relative;
     }
+
+    /* Логотип (поверх фона) */
     #result-zone.result-layout::before {
         content: "";
         display: block;
@@ -1039,21 +1043,49 @@ body {
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
-        margin: 40px auto 40px;  
+        margin: 40px auto 40px;
         flex-shrink: 0;
         order: 0;
+        position: relative;
+        z-index: 2;
     }
+
+    /* Фон с блюром и градиентом */
+    #result-zone.result-layout::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0) 100%),
+            url('imgs/main_mob.png');
+        background-size: cover;
+        background-position: center;
+        filter: blur(6px);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* Контент поверх фона */
     #result-zone .result-info {
         display: contents;
         width: 100%;
         order: 1;
     }
+
+    #result-zone .result-title,
+    #result-zone .result-media,
+    #result-zone .result-subtitle,
+    #result-zone .result-buttons {
+        position: relative;
+        z-index: 2;
+    }
+
     #result-zone .result-title {
         font-size: 24px;
         line-height: 100%;
         letter-spacing: 0.04em;
         text-align: center;
-        margin: 20px auto 30px;   
+        margin: 20px auto 30px;
         max-width: 342px;
         width: 100%;
         order: 1;
@@ -1061,6 +1093,7 @@ body {
         color: #fff;
         text-transform: uppercase;
     }
+
     #result-zone .result-media {
         width: 342px;
         max-width: 100%;
@@ -1073,6 +1106,7 @@ body {
         border-radius: 12px;
         overflow: hidden;
     }
+
     #result-zone .img-result {
         width: 100%;
         height: auto;
@@ -1083,6 +1117,7 @@ body {
         box-shadow: none;
         display: block;
     }
+
     #result-zone .result-subtitle {
         font-size: 14px;
         line-height: 110%;
@@ -1095,6 +1130,7 @@ body {
         font-family: 'Helvetica', Arial, sans-serif;
         white-space: normal;
     }
+
     #result-zone .result-buttons {
         display: flex;
         flex-direction: column;
@@ -1104,6 +1140,7 @@ body {
         margin: 40px auto 0;
         order: 4;
     }
+
     #result-zone .btn-action {
         width: 100%;
         height: 60px;
@@ -1121,18 +1158,22 @@ body {
         color: #fff;
         border: none;
     }
+
     #result-zone .btn-action.red {
         background: #FA2529;
     }
+
     #result-zone .btn-action.blue {
         background: #0019FF;
     }
+
     #result-zone .btn-action.red:hover,
     #result-zone .btn-action.blue:hover {
         transform: none;
     }
+
     #bonus-zone.bonus-layout {
-        background-image: url('imgs/last_mob.jpg');
+        background-image: url('imgs/last_mob.png');
         background-size: cover;
         background-position: center;
         padding: 0 24px 20px;
@@ -1228,88 +1269,338 @@ body {
 @media (max-width: 380px) {
     .screen {
         padding: 0 12px 12px;
+        overflow: hidden;
+        height: 100dvh;
     }
-    .logo-container {
-        padding-top: 30px;
+
+    #rules-screen {
+        padding: 0 12px 12px;
     }
-    .logo {
-        max-width: 100px;
-        height: 32px;
-    }
-    .title {
-        font-size: 20px;
-    }
-    .subtitle {
-        font-size: 12px;
-    }
-    .btn-start, .btn-continue, .btn-bonus-final {
-        height: 48px;
-        font-size: 16px;
+    .rules-content {
+        padding-top: 20px;
+        gap: 16px;
     }
     .rules-title {
-        font-size: 20px;
+        font-size: 18px;
+        margin-bottom: 4px;
     }
     .rule-card {
-        height: 120px;
+        height: 100px;
+        padding: 12px 10px;
+        border-radius: 10px;
     }
     .rule-card-number {
-        font-size: 32px;
+        font-size: 28px;
+        margin-bottom: 4px;
     }
     .rule-card-text {
-        font-size: 14px;
-    }
-    .game-title {
-        font-size: 20px;
-    }
-    .game-counter {
-        font-size: 14px;
-    }
-    .video-container {
+        font-size: 13px;
         max-width: 100%;
     }
-    .quiz-options {
-        grid-template-columns: 1fr 1fr;
+    .rules-container {
         gap: 6px;
+        margin-bottom: 4px;
     }
-    .quiz-btn {
+    .btn-continue {
+        height: 58px;
+        font-size: 16px;
+        max-width: 100%;
+    }
+
+    .logo,
+    #play-zone::before,
+    #result-zone.result-layout::before,
+    .bonus-logo {
+        width: 126px !important;
+        height: 40px !important;
+        max-width: 126px !important;
+        flex-shrink: 0;
+        object-fit: contain;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .logo-container {
+        display: flex;
+        justify-content: center;
         width: 100%;
-        height: 36px;
-        font-size: 12px;
-        padding: 6px 12px;
+        flex-shrink: 0;
+        margin-bottom: 20px;
     }
-    .btn-next {
-        height: 48px;
-        font-size: 16px;
-    }
-    #result-zone .result-title {
-        font-size: 20px;
-    }
-    #result-zone .result-subtitle {
-        font-size: 13px;
-    }
-    #bonus-zone .bonus-title {
-        font-size: 22px;
-    }
-    #bonus-zone .bonus-subtitle {
-        font-size: 13px;
-    }
-    #bonus-zone .btn-bonus-final {
-        height: 48px;
-        font-size: 16px;
-    }
+
     #play-zone {
         padding: 0 12px 12px;
     }
     #play-zone::before {
-        width: 100px;
-        height: 32px;
-        margin-top: 30px;
+        margin: 0 auto 20px;
+        content: "";
+        display: block;
     }
-    .rules-content {
-        padding-top: 12px;
+    .game-title {
+        font-size: 18px;
+        margin: 0 auto 16px;
+    }
+    .game-counter {
+        font-size: 14px;
+        margin-bottom: 14px;
+        margin-top: 0;
+    }
+    .video-container {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+    .quiz-options {
+        gap: 4px;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+    .quiz-btn {
+        height: 32px;
+        font-size: 14px;
+        padding: 4px 8px;
+        border-radius: 8px;
+        width: 100%;
+    }
+    .btn-next {
+        height: 44px;
+        font-size: 14px;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 4px;
+    }
+
+    #result-zone.result-layout {
+        padding: 0 12px 12px;
+    }
+    #result-zone.result-layout::before {
+        margin: 0 auto 20px;
+        content: "";
+        display: block;
+    }
+    #result-zone .result-title {
+        font-size: 18px;
+        margin: 0 auto 16px;
+    }
+    #result-zone .result-media {
+        max-width: 100%;
+        width: 100%;
+        border-width: 2px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    #result-zone .img-result {
+        max-height: 220px;
+        width: 100%;
+        object-fit: cover;
+        border: none;
+        border-radius: 0;
+    }
+    #result-zone .result-subtitle {
+        font-size: 13px;
+        margin: 12px 0 0;
+    }
+    #result-zone .result-buttons {
+        margin-top: 20px;
+        gap: 6px;
+        width: 100%;
+    }
+    #result-zone .btn-action {
+        height: 48px;
+        font-size: 16px;
+        width: 100%;
+    }
+
+    #bonus-zone.bonus-layout {
+        padding: 0 12px 12px;
+    }
+    .bonus-logo {
+        margin: 0 auto 20px;
+        display: block;
+    }
+    #bonus-zone .bonus-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+    #bonus-zone .bonus-subtitle {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+    #bonus-zone .btn-bonus-final {
+        height: 48px;
+        font-size: 16px;
+        max-width: 100%;
+        width: 100%;
     }
 }
+@media (max-width: 380px) {
+    /* ===== ОБЩИЕ ПРАВКИ ===== */
+    .screen {
+        padding: 0 12px 12px;
+        overflow: hidden;
+        height: 100dvh;
+    }
 
+    /* ===== ПРАВИЛА ===== */
+    #rules-screen {
+        padding: 0 12px 12px;
+    }
+    .rules-content {
+        padding-top: 20px;
+        gap: 16px;
+    }
+    .rules-title {
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+    .rule-card {
+        height: 100px;
+        padding: 12px 10px;
+        border-radius: 10px;
+    }
+    .rule-card-number {
+        font-size: 28px;
+        margin-bottom: 4px;
+    }
+    .rule-card-text {
+        font-size: 13px;
+        max-width: 100%;
+    }
+    .rules-container {
+        gap: 6px;
+        margin-bottom: 4px;
+    }
+    .btn-continue {
+        height: 58px;
+        font-size: 16px;
+        max-width: 100%;
+    }
+
+    /* ===== ИГРА (видео + квиз) ===== */
+    #play-zone {
+        padding: 0 12px 12px;
+    }
+    /* Логотип – такой же, как на главном */
+    #play-zone::before {
+        margin: 24px auto 16px;
+        width: 126px;        /* было 280px – исправлено */
+        height: 40px;        /* явно задаём высоту */
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .game-title {
+        font-size: 18px;
+        margin: 16px auto 26px;
+    }
+    .game-counter {
+        font-size: 14px;
+        margin-bottom: 14px;
+        margin-top: 8px;
+    }
+    .video-container {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+    /* Квиз-блок – на всю ширину */
+    .quiz-options {
+        gap: 4px;
+        max-width: 100%;     /* растягиваем на всю ширину */
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* две колонки */
+        width: 100%;
+    }
+    .quiz-btn {
+        height: 32px;
+        font-size: 14px;
+        padding: 4px 8px;
+        border-radius: 8px;
+        width: 100%;         /* каждая кнопка растягивается в своей ячейке */
+    }
+    .btn-next {
+        height: 44px;
+        font-size: 14px;
+        width: 100%;         /* на всю ширину */
+        max-width: 100%;
+        margin-top: 4px;
+    }
+
+    /* ===== РЕЗУЛЬТАТ ===== */
+    #result-zone.result-layout {
+        padding: 0 12px 12px;
+    }
+    /* Логотип – как на главном */
+    #result-zone.result-layout::before {
+        margin: 20px auto 0;
+        width: 126px;        /* было 80px – увеличили */
+        height: 40px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    #result-zone .result-title {
+        font-size: 18px;
+        margin: 80px auto 16px;  /* отступ сверху, чтобы не налезало на лого */
+    }
+    /* Картинка – на всю ширину */
+    #result-zone .result-media {
+        max-width: 100%;     /* растягиваем */
+        width: 100%;
+        border-width: 2px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    #result-zone .img-result {
+        max-height: 220px;   /* чуть больше, чем было */
+        width: 100%;
+        object-fit: cover;
+        border: none;        /* убираем лишнюю рамку, т.к. она уже на родителе */
+        border-radius: 0;
+    }
+    #result-zone .result-subtitle {
+        font-size: 13px;
+        margin: 12px 0 0;
+    }
+    #result-zone .result-buttons {
+        margin-top: 20px;
+        gap: 6px;
+        width: 100%;
+    }
+    #result-zone .btn-action {
+        height: 48px;
+        font-size: 16px;
+        width: 100%;
+    }
+
+    /* ===== БОНУС ===== */
+    #bonus-zone.bonus-layout {
+        padding: 0 12px 12px;
+    }
+    /* Логотип – как на главном */
+    #bonus-zone .bonus-logo {
+        margin: 20px auto 0;
+        max-width: 126px;    /* было 80px – увеличили */
+        height: 40px;
+        width: auto;
+        object-fit: contain;
+    }
+    #bonus-zone .bonus-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+    #bonus-zone .bonus-subtitle {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+    #bonus-zone .btn-bonus-final {
+        height: 48px;
+        font-size: 16px;
+        max-width: 100%;
+        width: 100%;
+    }
+}
 /* ==========================================================================
    ДЕСКТОПНЫЕ ОТСТУПЫ (для экранов шире 768px)
    ========================================================================== */
@@ -1353,7 +1644,7 @@ body {
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('imgs/main.jpg');
+        background-image: url('imgs/main.png');
         background-size: cover;
         background-position: center;
         filter: blur(6px);    
