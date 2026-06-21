@@ -711,9 +711,6 @@ body {
     display: none;
 }
 
-/* ==========================================================================
-   МОБИЛЬНАЯ ВЕРСИЯ (до 767px)
-   ========================================================================== */
 @media (max-width: 767px) {
     .screen {
         padding: 0 0 20px;
@@ -776,16 +773,19 @@ body {
         border-radius: 12px;
         margin-top: 0;
     }
+
+    /* ===== ЭКРАН ПРАВИЛ (уменьшены отступы) ===== */
     #rules-screen {
         background-image: url('imgs/main_mob.png');
         background-size: cover;
         background-position: center;
-        padding: 0 24px 20px;
+        padding: 0 16px 12px;  /* было 0 24px 20px */
     }
     #rules-screen .logo-container {
         margin-bottom: 0;
         opacity: 1;
         animation: none;
+        padding-top: 20px; /* уменьшили */
     }
     .rules-content {
         max-width: 342px;
@@ -796,59 +796,52 @@ body {
         align-items: center;
         gap: 0;
         flex: 1;
-        justify-content: flex-start;
-        padding-top: 30px;
+        justify-content: center;  /* центрируем по вертикали */
+        padding-top: 10px;       /* было 30px */
     }
     .rules-title {
         font-size: 24px;
         max-width: 100%;
         letter-spacing: 0.04em;
-        margin: 0 0 40px 0;
+        margin: 0 0 24px 0;      /* было 40px */
         text-align: center;
         line-height: 100%;
     }
-
     .rules-container {
         display: flex;
         flex-direction: column;
         gap: 8px;
         max-width: 342px;
-        margin: 0 auto 32px auto;
+        margin: 0 auto 16px auto; /* было 32px */
         width: 100%;
     }
     .rule-card {
-        flex: 0 0 140px;
+        flex: 0 0 120px;         /* было 140px – уменьшили высоту */
         width: 100%;
         max-width: 342px;
-        height: 140px;
+        height: 120px;
         border-radius: 12px;
         background: #0019FF;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 20px 16px;
+        padding: 16px 16px;       /* было 20px 16px */
         text-align: center;
         border: none;
         backdrop-filter: none;
         transition: none;
     }
-    .rule-card:hover {
-        transform: none;
-        box-shadow: none;
-        background: #0019FF;
-    }
     .rule-card-number {
-        font-size: 40px;
+        font-size: 36px;         /* было 40px */
         line-height: 100%;
-        margin-bottom: 12px;
-        width: auto;
+        margin-bottom: 6px;      /* было 12px */
         color: #fff;
         font-family: 'Furore', sans-serif;
         display: block;
     }
     .rule-card-text {
-        font-size: 16px;
+        font-size: 15px;         /* было 16px */
         line-height: 110%;
         max-width: 232px;
         color: #fff;
@@ -860,15 +853,14 @@ body {
     .btn-continue {
         width: 100%;
         max-width: 342px;
-        height: 60px;
-        font-size: 20px;
+        height: 56px;           /* было 60px */
+        font-size: 18px;        /* было 20px */
         border-radius: 12px;
         margin: 0 auto;
         flex-shrink: 0;
     }
-    .btn-start, .btn-continue {
-        margin-top: 0;
-    }
+
+    /* ===== ИГРОВОЙ ЭКРАН (уменьшены отступы) ===== */
     #game-screen {
         padding: 0;
         background: #000;
@@ -883,7 +875,7 @@ body {
         display: none;
     }
     #play-zone {
-        padding: 0 24px 20px;
+        padding: 0 16px 12px;    /* было 0 24px 20px */
         justify-content: flex-start;
         align-items: center;
         height: 100%;
@@ -900,15 +892,15 @@ body {
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
-        margin: 40px auto 40px;
+        margin: 24px auto 20px;  /* было 40px auto 40px */
         flex-shrink: 0;
         opacity: 1;
         animation: none;
     }
     .game-title {
-        font-size: 24px;
+        font-size: 22px;         /* было 24px */
         max-width: 342px;
-        margin: 20px auto -20px;   
+        margin: 8px auto 4px;    /* было 20px auto -20px */
         line-height: 120%;
         letter-spacing: 0.04em;
         text-align: center;
@@ -916,7 +908,8 @@ body {
     }
     .game-counter {
         font-size: 16px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;     /* было 30px */
+        margin-top: 0;           /* добавили */
         line-height: 120%;
         text-align: center;
         width: 100%;
@@ -951,8 +944,8 @@ body {
         left: auto !important;
         background: transparent !important;
         padding: 0 !important;
-        margin-top: 16px;
-        gap: 16px;
+        margin-top: 12px;        /* было 16px */
+        gap: 12px;              /* было 16px */
         border-radius: 0;
         display: flex;
         flex-direction: column;
@@ -964,17 +957,17 @@ body {
     }
     .quiz-options {
         display: grid;
-        grid-template-columns: 167px 167px;
-        gap: 8px;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;               /* было 8px */
         max-width: 342px;
         width: 100%;
         justify-content: center;
         margin: 0 auto;
     }
     .quiz-btn {
-        width: 167px;
-        height: 40px;
-        padding: 9px 24px 7px;
+        width: 100%;
+        height: 38px;           /* было 40px */
+        padding: 6px 12px;      /* было 9px 24px 7px */
         font-size: 14px;
         line-height: 110%;
         border-radius: 12px;
@@ -992,14 +985,11 @@ body {
         background: #0019FF;
         color: #FFFFFF;
     }
-    .quiz-btn:hover {
-        transform: none;
-    }
     .btn-next {
         width: 342px;
         max-width: 100%;
-        height: 60px;
-        font-size: 20px;
+        height: 54px;           /* было 60px */
+        font-size: 18px;        /* было 20px */
         border-radius: 12px;
         background: #FA2529;
         color: #fff;
@@ -1007,18 +997,14 @@ body {
         font-family: 'Furore', sans-serif;
         cursor: pointer;
         transition: background-color 0.2s, transform 0.2s;
-        margin-top: 8px;
+        margin-top: 4px;        /* было 8px */
         flex-shrink: 0;
     }
-    .btn-next:hover {
-        transform: none;
-    }
 
-    /* ===== МОБИЛЬНЫЙ ЭКРАН РЕЗУЛЬТАТА (исправлен) ===== */
+    /* ===== ЭКРАН РЕЗУЛЬТАТА ===== */
     #result-zone {
         padding: 0;
     }
-
     #result-zone.result-layout {
         flex-direction: column;
         justify-content: flex-start;
@@ -1032,8 +1018,6 @@ body {
         box-sizing: border-box;
         position: relative;
     }
-
-    /* Логотип (поверх фона) */
     #result-zone.result-layout::before {
         content: "";
         display: block;
@@ -1049,8 +1033,6 @@ body {
         position: relative;
         z-index: 2;
     }
-
-    /* Фон с блюром и градиентом */
     #result-zone.result-layout::after {
         content: '';
         position: absolute;
@@ -1064,14 +1046,11 @@ body {
         z-index: 0;
         pointer-events: none;
     }
-
-    /* Контент поверх фона */
     #result-zone .result-info {
         display: contents;
         width: 100%;
         order: 1;
     }
-
     #result-zone .result-title,
     #result-zone .result-media,
     #result-zone .result-subtitle,
@@ -1079,7 +1058,6 @@ body {
         position: relative;
         z-index: 2;
     }
-
     #result-zone .result-title {
         font-size: 24px;
         line-height: 100%;
@@ -1093,7 +1071,6 @@ body {
         color: #fff;
         text-transform: uppercase;
     }
-
     #result-zone .result-media {
         width: 342px;
         max-width: 100%;
@@ -1106,7 +1083,6 @@ body {
         border-radius: 12px;
         overflow: hidden;
     }
-
     #result-zone .img-result {
         width: 100%;
         height: auto;
@@ -1117,7 +1093,6 @@ body {
         box-shadow: none;
         display: block;
     }
-
     #result-zone .result-subtitle {
         font-size: 14px;
         line-height: 110%;
@@ -1130,7 +1105,6 @@ body {
         font-family: 'Helvetica', Arial, sans-serif;
         white-space: normal;
     }
-
     #result-zone .result-buttons {
         display: flex;
         flex-direction: column;
@@ -1140,7 +1114,6 @@ body {
         margin: 40px auto 0;
         order: 4;
     }
-
     #result-zone .btn-action {
         width: 100%;
         height: 60px;
@@ -1158,20 +1131,14 @@ body {
         color: #fff;
         border: none;
     }
-
     #result-zone .btn-action.red {
         background: #FA2529;
     }
-
     #result-zone .btn-action.blue {
         background: #0019FF;
     }
 
-    #result-zone .btn-action.red:hover,
-    #result-zone .btn-action.blue:hover {
-        transform: none;
-    }
-
+    /* ===== БОНУС ===== */
     #bonus-zone.bonus-layout {
         background-image: url('imgs/last_mob.png');
         background-size: cover;
@@ -1179,7 +1146,7 @@ body {
         padding: 0 24px 20px;
         justify-content: flex-start;
         height: 100dvh;
-        overflow-y: auto;
+        overflow: hidden;        /* было auto – исправлено */
         flex-direction: column;
         align-items: center;
         box-sizing: border-box;
@@ -1199,7 +1166,6 @@ body {
         justify-content: center;
         order: 1;
     }
-
     #bonus-zone .bonus-title {
         font-size: 24px;
         line-height: 120%;
@@ -1210,7 +1176,6 @@ body {
         margin: 0 0 12px 0;
         text-transform: uppercase;
     }
-
     #bonus-zone .bonus-subtitle {
         font-size: 14px;
         line-height: 110%;
@@ -1273,25 +1238,29 @@ body {
         height: 100dvh;
     }
 
+    /* ===== ПРАВИЛА ===== */
     #rules-screen {
         padding: 0 12px 12px;
     }
+    #rules-screen .logo-container {
+        padding-top: 12px;   /* ещё уменьшили */
+    }
     .rules-content {
-        padding-top: 20px;
-        gap: 16px;
+        padding-top: 8px;    /* было 20px */
+        gap: 12px;           /* было 16px */
     }
     .rules-title {
         font-size: 18px;
         margin-bottom: 4px;
     }
     .rule-card {
-        height: 100px;
-        padding: 12px 10px;
+        height: 100px;       /* было 140px – сильно уменьшили */
+        padding: 10px 10px;  /* было 12px 10px */
         border-radius: 10px;
     }
     .rule-card-number {
         font-size: 28px;
-        margin-bottom: 4px;
+        margin-bottom: 2px;  /* было 4px */
     }
     .rule-card-text {
         font-size: 13px;
@@ -1302,48 +1271,32 @@ body {
         margin-bottom: 4px;
     }
     .btn-continue {
-        height: 58px;
+        height: 48px;        /* было 58px – уменьшили */
         font-size: 16px;
         max-width: 100%;
     }
 
-    .logo,
-    #play-zone::before,
-    #result-zone.result-layout::before,
-    .bonus-logo {
-        width: 126px !important;
-        height: 40px !important;
-        max-width: 126px !important;
-        flex-shrink: 0;
-        object-fit: contain;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .logo-container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        flex-shrink: 0;
-        margin-bottom: 20px;
-    }
-
+    /* ===== ИГРА ===== */
     #play-zone {
         padding: 0 12px 12px;
     }
     #play-zone::before {
-        margin: 0 auto 20px;
+        margin: 16px auto 12px;  /* было 24px auto 16px */
+        width: 126px;
+        height: 40px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
         content: "";
         display: block;
     }
     .game-title {
-        font-size: 18px;
-        margin: 0 auto 16px;
+        font-size: 16px;      /* было 18px */
+        margin: 6px auto 4px; /* было 16px auto 26px */
     }
     .game-counter {
         font-size: 14px;
-        margin-bottom: 14px;
+        margin-bottom: 12px;  /* было 14px */
         margin-top: 0;
     }
     .video-container {
@@ -1358,171 +1311,16 @@ body {
         width: 100%;
     }
     .quiz-btn {
-        height: 32px;
-        font-size: 14px;
-        padding: 4px 8px;
+        height: 30px;        /* было 32px */
+        font-size: 13px;     /* было 14px */
+        padding: 4px 6px;    /* было 4px 8px */
         border-radius: 8px;
         width: 100%;
     }
     .btn-next {
-        height: 44px;
+        height: 42px;        /* было 44px */
         font-size: 14px;
         width: 100%;
-        max-width: 100%;
-        margin-top: 4px;
-    }
-
-    #result-zone.result-layout {
-        padding: 0 12px 12px;
-    }
-    #result-zone.result-layout::before {
-        margin: 0 auto 20px;
-        content: "";
-        display: block;
-    }
-    #result-zone .result-title {
-        font-size: 18px;
-        margin: 0 auto 16px;
-    }
-    #result-zone .result-media {
-        max-width: 100%;
-        width: 100%;
-        border-width: 2px;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    #result-zone .img-result {
-        max-height: 220px;
-        width: 100%;
-        object-fit: cover;
-        border: none;
-        border-radius: 0;
-    }
-    #result-zone .result-subtitle {
-        font-size: 13px;
-        margin: 12px 0 0;
-    }
-    #result-zone .result-buttons {
-        margin-top: 20px;
-        gap: 6px;
-        width: 100%;
-    }
-    #result-zone .btn-action {
-        height: 48px;
-        font-size: 16px;
-        width: 100%;
-    }
-
-    #bonus-zone.bonus-layout {
-        padding: 0 12px 12px;
-    }
-    .bonus-logo {
-        margin: 0 auto 20px;
-        display: block;
-    }
-    #bonus-zone .bonus-title {
-        font-size: 20px;
-        margin-bottom: 8px;
-    }
-    #bonus-zone .bonus-subtitle {
-        font-size: 13px;
-        margin-bottom: 20px;
-    }
-    #bonus-zone .btn-bonus-final {
-        height: 48px;
-        font-size: 16px;
-        max-width: 100%;
-        width: 100%;
-    }
-}
-@media (max-width: 380px) {
-    /* ===== ОБЩИЕ ПРАВКИ ===== */
-    .screen {
-        padding: 0 12px 12px;
-        overflow: hidden;
-        height: 100dvh;
-    }
-
-    /* ===== ПРАВИЛА ===== */
-    #rules-screen {
-        padding: 0 12px 12px;
-    }
-    .rules-content {
-        padding-top: 20px;
-        gap: 16px;
-    }
-    .rules-title {
-        font-size: 18px;
-        margin-bottom: 4px;
-    }
-    .rule-card {
-        height: 100px;
-        padding: 12px 10px;
-        border-radius: 10px;
-    }
-    .rule-card-number {
-        font-size: 28px;
-        margin-bottom: 4px;
-    }
-    .rule-card-text {
-        font-size: 13px;
-        max-width: 100%;
-    }
-    .rules-container {
-        gap: 6px;
-        margin-bottom: 4px;
-    }
-    .btn-continue {
-        height: 58px;
-        font-size: 16px;
-        max-width: 100%;
-    }
-
-    /* ===== ИГРА (видео + квиз) ===== */
-    #play-zone {
-        padding: 0 12px 12px;
-    }
-    /* Логотип – такой же, как на главном */
-    #play-zone::before {
-        margin: 24px auto 16px;
-        width: 126px;        /* было 280px – исправлено */
-        height: 40px;        /* явно задаём высоту */
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    .game-title {
-        font-size: 18px;
-        margin: 16px auto 26px;
-    }
-    .game-counter {
-        font-size: 14px;
-        margin-bottom: 14px;
-        margin-top: 8px;
-    }
-    .video-container {
-        max-width: 100%;
-        border-radius: 10px;
-    }
-    /* Квиз-блок – на всю ширину */
-    .quiz-options {
-        gap: 4px;
-        max-width: 100%;     /* растягиваем на всю ширину */
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* две колонки */
-        width: 100%;
-    }
-    .quiz-btn {
-        height: 32px;
-        font-size: 14px;
-        padding: 4px 8px;
-        border-radius: 8px;
-        width: 100%;         /* каждая кнопка растягивается в своей ячейке */
-    }
-    .btn-next {
-        height: 44px;
-        font-size: 14px;
-        width: 100%;         /* на всю ширину */
         max-width: 100%;
         margin-top: 4px;
     }
@@ -1531,45 +1329,45 @@ body {
     #result-zone.result-layout {
         padding: 0 12px 12px;
     }
-    /* Логотип – как на главном */
     #result-zone.result-layout::before {
-        margin: 20px auto 0;
-        width: 126px;        /* было 80px – увеличили */
+        margin: 16px auto 12px; /* было 0 auto 20px */
+        width: 126px;
         height: 40px;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+        content: "";
+        display: block;
     }
     #result-zone .result-title {
         font-size: 18px;
-        margin: 80px auto 16px;  /* отступ сверху, чтобы не налезало на лого */
+        margin: 8px auto 12px;  /* было 0 auto 16px */
     }
-    /* Картинка – на всю ширину */
     #result-zone .result-media {
-        max-width: 100%;     /* растягиваем */
+        max-width: 100%;
         width: 100%;
         border-width: 2px;
         border-radius: 10px;
         overflow: hidden;
     }
     #result-zone .img-result {
-        max-height: 220px;   /* чуть больше, чем было */
+        max-height: 180px;      /* было 220px – уменьшили */
         width: 100%;
         object-fit: cover;
-        border: none;        /* убираем лишнюю рамку, т.к. она уже на родителе */
+        border: none;
         border-radius: 0;
     }
     #result-zone .result-subtitle {
         font-size: 13px;
-        margin: 12px 0 0;
+        margin: 10px 0 0;      /* было 12px */
     }
     #result-zone .result-buttons {
-        margin-top: 20px;
+        margin-top: 16px;      /* было 20px */
         gap: 6px;
         width: 100%;
     }
     #result-zone .btn-action {
-        height: 48px;
+        height: 44px;          /* было 48px */
         font-size: 16px;
         width: 100%;
     }
@@ -1578,24 +1376,24 @@ body {
     #bonus-zone.bonus-layout {
         padding: 0 12px 12px;
     }
-    /* Логотип – как на главном */
-    #bonus-zone .bonus-logo {
-        margin: 20px auto 0;
-        max-width: 126px;    /* было 80px – увеличили */
+    .bonus-logo {
+        margin: 16px auto 12px; /* было 0 auto 20px */
+        max-width: 126px;
         height: 40px;
         width: auto;
         object-fit: contain;
+        display: block;
     }
     #bonus-zone .bonus-title {
         font-size: 20px;
-        margin-bottom: 8px;
+        margin-bottom: 6px;    /* было 8px */
     }
     #bonus-zone .bonus-subtitle {
         font-size: 13px;
-        margin-bottom: 20px;
+        margin-bottom: 16px;   /* было 20px */
     }
     #bonus-zone .btn-bonus-final {
-        height: 48px;
+        height: 44px;          /* было 48px */
         font-size: 16px;
         max-width: 100%;
         width: 100%;
