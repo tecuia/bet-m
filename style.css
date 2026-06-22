@@ -1348,6 +1348,7 @@ body {
     }
 }
 
+
 /* ==========================================================================
    ДЕСКТОПНЫЕ ОТСТУПЫ (для экранов шире 768px)
    ========================================================================== */
@@ -1368,6 +1369,70 @@ body {
     }
     .rules-content {
         gap: 100px;
+    }
+}
+
+@media (max-height: 640px) and (max-width: 480px) {
+    
+    /* Отключаем скролл и фиксируем экран строго под dvh */
+    #rules-screen.screen {
+        overflow: hidden !important;
+        overflow-y: hidden !important;
+        padding: 0 24px 10px !important;
+    }
+
+    /* 1. Сжимаем отступы логотипа */
+    #rules-screen .logo-container {
+        padding: 15px 0 0 !important; 
+    }
+    #rules-screen .logo {
+        max-width: 100px !important; 
+        height: 32px !important;
+    }
+
+    /* 2. Сжимаем отступы обертки контента правил */
+    #rules-screen .rules-content {
+        padding-top: 15px !important; 
+    }
+
+    /* 3. Уменьшаем заголовок и его нижний отступ */
+    #rules-screen .rules-title {
+        font-size: 20px !important; 
+        margin: 0 0 15px 0 !important; 
+    }
+
+    /* 4. Сжимаем контейнер с карточками (отступы и зазоры) */
+    #rules-screen .rules-container {
+        gap: 5px !important; 
+        margin: 0 auto 15px auto !important; 
+    }
+
+    /* 5. Уменьшаем высоту самих карточек правил и внутренние падинги */
+    #rules-screen .rule-card {
+        flex: 0 0 100px !important; 
+        height: 100px !important; 
+        padding: 10px 16px !important; 
+        border-radius: 10px !important;
+    }
+
+    /* 6. Ужимаем крупные цифры 01, 02, 03 */
+    #rules-screen .rule-card-number {
+        font-size: 28px !important; 
+        margin-bottom: 2px !important; 
+    }
+
+    /* 7. Поджимаем текст внутри карточек */
+    #rules-screen .rule-card-text {
+        font-size: 13px !important; 
+        line-height: 110% !important;
+        max-width: 250px !important;
+    }
+
+    /* 8. Делаем кнопку «Продолжить» аккуратнее по высоте */
+    #rules-screen .btn-continue {
+        height: 48px !important; 
+        font-size: 16px !important; 
+        border-radius: 10px !important;
     }
 }
 
