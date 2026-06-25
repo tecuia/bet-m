@@ -1,3 +1,16 @@
+/* 
+ * ==========================================================================
+ *  GOOGLE INSIGHTS — SAFARI ADAPTATION & ENHANCEMENTS
+ *  Senior Frontend-Dev
+ * ==========================================================================
+ *
+ * Изменения:
+ * 1. Глобальная замена 100vh на 100dvh для корректной работы на iOS Safari.
+ * 2. Добавлен padding-top с env(safe-area-inset-top) для логотипа.
+ * 3. Добавлен фикс для video-container на iOS (webkit-transform для z-index).
+ * 4. Добавлены вендорные префиксы для безопасной работы в старых версиях Safari.
+ */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,6 +21,11 @@
     -ms-user-select: none;
 }
 
+@font-face {
+    font-family: 'Furore';
+    src: url('./Furore.woff') format('woff');
+}
+
 .hidden {
     display: none !important;
 }
@@ -15,8 +33,11 @@
 body {
     width: 100%;
     min-height: 100vh;
+    /* Основное улучшение для iOS: минимальная высота экрана с динамическим viewport */
+    min-height: 100dvh;
     background-color: #000000;
     font-family: 'Helvetica', Arial, sans-serif;
+    margin: 0;
 }
 
 /* ==========================================================================
@@ -65,17 +86,30 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    /* Критическое изменение: используем dvh для динамической высоты в Safari */
     height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
     overflow: hidden;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    
+    /* Адаптация под Safe Area (iPhone X+, Dynamic Island) */
+    padding-top: max(40px, env(safe-area-inset-top));
+    padding-bottom: max(40px, env(safe-area-inset-bottom));
+    
+    /* Горизонтальные отступы тоже учитываем на всякий случай */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    
     position: relative;
     opacity: 0;
     animation: fadeIn 0.8s ease forwards;
 }
+
 .screen.hidden {
     display: none !important;
 }
+
 .screen-overlay {
     position: absolute;
     top: 0;
@@ -85,6 +119,7 @@ body {
     pointer-events: none;
     z-index: 1;
 }
+
 .logo-container,
 .promo-case,
 .rules-content {
@@ -104,6 +139,7 @@ body {
 #main-screen .logo-container {
     opacity: 0;
     animation: fadeInLogo 1s ease 0.3s forwards;
+    margin-top: 10px;
 }
 #main-screen .title {
     opacity: 0;
@@ -122,7 +158,7 @@ body {
    ЭКРАН ПРАВИЛ
    ========================================================================== */
 #rules-screen {
-    background-image: url('imgs/main.png');
+    background-image: url('imgs/main.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -167,6 +203,10 @@ body {
     background-color: #000;
     opacity: 0;
     animation: fadeIn 0.8s ease forwards;
+    
+    /* Переопределяем padding для игрового экрана, если он управляется внутренними зонами */
+    padding-top: 0;
+    padding-bottom: 0;
 }
 #game-screen::before {
     content: "";
@@ -175,7 +215,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('imgs/main.png');
+    background-image: url('imgs/main.jpg');
+    filter: brightness(.5);
+    -webkit-filter: brightness(.5); /* Префикс для старых Safari */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -214,24 +256,27 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    
+    /* Адаптация под челку для игровой зоны */
+    padding-top: max(60px, env(safe-area-inset-top));
 }
-#play-zone .game-title {
+#play-zone.active .game-title {
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.3s forwards;
 }
-#play-zone .game-counter {
+#play-zone.active .game-counter {
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.5s forwards;
 }
-#play-zone .video-container {
+#play-zone.active .video-container {
     opacity: 0;
     animation: fadeInScale 0.8s ease 0.7s forwards;
 }
-#play-zone .quiz-overlay .quiz-options {
+#play-zone .quiz-overlay.active .quiz-options {
     opacity: 0;
     animation: fadeInUp 0.6s ease 0.3s forwards;
 }
-#play-zone .quiz-overlay .btn-next {
+#play-zone .quiz-overlay.active .btn-next {
     opacity: 0;
     animation: fadeInUp 0.6s ease 0.5s forwards;
 }
@@ -243,6 +288,7 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -255,46 +301,73 @@ body {
     padding: 40px;
     opacity: 0;
     animation: fadeIn 0.6s ease forwards;
+    
+    /* Адаптация под Safe Area */
+    padding-top: max(40px, env(safe-area-inset-top));
+    padding-bottom: max(40px, env(safe-area-inset-bottom));
 }
 
-/* Сначала появляется картинка (задержка 0.3s), потом текст (0.6s) */
-.result-layout .result-media {
+.result-layout .result-media.active {
     opacity: 0;
     animation: fadeInScale 0.8s ease 0.3s forwards;
 }
-.result-layout .result-info {
+.result-layout .result-info.active {
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.6s forwards;
 }
 
 /* ----- BONUS ZONE ----- */
-.bonus-layout {
+.bonus-highlight {
+    font-weight: 700;
+    display: inline;
+}
+
+.bonus-layout.active {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(4px);
-    background-image: url('imgs/last.png');
+    height: 100dvh;
+    background-image: url('./imgs/bonus-bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    
+        overflow-y: auto;
+    
     z-index: 20;
     opacity: 0;
     animation: fadeIn 0.8s ease forwards;
 }
-.bonus-layout .bonus-logo {
+
+
+    .bonus-wrap {
+        position: relative;
+        background-position: center;
+        padding: 0 24px 20px;
+        margin: 0 auto;
+        justify-content: flex-start;
+        height: 100dvh;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+        max-width: 1500px;
+        width: 100%;
+    }
+
+
+        .bonus-content {
+            width: 800px;
+            max-width: 60%;
+        }
+.bonus-layout.active .bonus-logo {
     opacity: 0;
     animation: fadeInScale 0.8s ease 0.3s forwards;
 }
-.bonus-layout .bonus-content {
+.bonus-layout.active .bonus-content {
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.5s forwards;
 }
@@ -307,6 +380,8 @@ body {
     justify-content: center;
     width: 100%;
     margin-bottom: 120px;
+    /* Дополнительная страховка для логотипа */
+    flex-shrink: 0;
 }
 .logo {
     display: block;
@@ -365,7 +440,6 @@ body {
     text-align: center;
     text-transform: uppercase;
     color: #fff;
-    
 }
 
 /* ===== КАРТОЧКИ ПРАВИЛ ===== */
@@ -380,7 +454,7 @@ body {
     margin: 0 auto;
 }
 .rule-card {
-    flex: 0 0 520px;
+    flex: 0 0 30%;
     height: 343px;
     border-radius: 20px;
     background: #0019FF;
@@ -432,14 +506,16 @@ body {
     color: #fff;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
+    -webkit-transition: background-color 0.2s ease, -webkit-transform 0.2s ease;
+    transition: background-color 0.2s ease, -webkit-transform 0.2s ease;
     margin-top: 20px;
 }
 .btn-start:hover, .btn-continue:hover {
     background-color: #cc1f22;
-    transform: scale(1.02);
 }
 .btn-start:active, .btn-continue:active {
     transform: scale(0.97);
+    -webkit-transform: scale(0.97);
 }
 
 .btn-next {
@@ -457,13 +533,14 @@ body {
     color: #fff;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
+    -webkit-transition: background-color 0.2s ease, -webkit-transform 0.2s ease;
 }
 .btn-next:hover {
     background-color: #cc1f22;
-    transform: scale(1.02);
 }
 .btn-next:active {
     transform: scale(0.97);
+    -webkit-transform: scale(0.97);
 }
 
 .btn-action {
@@ -481,6 +558,7 @@ body {
     cursor: pointer;
     text-transform: uppercase;
     transition: background-color 0.2s ease, transform 0.2s ease;
+    -webkit-transition: background-color 0.2s ease, -webkit-transform 0.2s ease;
 }
 .btn-action.red {
     background-color: #FA2529;
@@ -490,14 +568,13 @@ body {
 }
 .btn-action.red:hover {
     background-color: #cc1f22;
-    transform: scale(1.02);
 }
 .btn-action.blue:hover {
     background-color: #0022dd;
-    transform: scale(1.02);
 }
 .btn-action:active {
     transform: scale(0.97);
+    -webkit-transform: scale(0.97);
 }
 
 .btn-bonus-final {
@@ -517,13 +594,14 @@ body {
     cursor: pointer;
     text-transform: uppercase;
     transition: background-color 0.2s ease, transform 0.2s ease;
+    -webkit-transition: background-color 0.2s ease, -webkit-transform 0.2s ease;
 }
 .btn-bonus-final:hover {
     background-color: #cc1f22;
-    transform: scale(1.02);
 }
 .btn-bonus-final:active {
     transform: scale(0.97);
+    -webkit-transform: scale(0.97);
 }
 
 /* ===== ИГРОВЫЕ ЭЛЕМЕНТЫ ===== */
@@ -557,6 +635,10 @@ body {
     border-radius: 20px;
     overflow: hidden;
     background-color: #000;
+    
+    /* Фикс для iOS Safari: z-index внутри overflow-hidden */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 #game-video {
     width: 100%;
@@ -577,6 +659,10 @@ body {
     align-items: center;
     padding-bottom: 40px;
     gap: 24px;
+    
+    /* Плавность для iOS */
+    -webkit-backdrop-filter: blur(0px);
+    backdrop-filter: blur(0px);
 }
 .quiz-overlay.hidden {
     display: none !important;
@@ -608,6 +694,7 @@ body {
     text-align: center;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+    -webkit-transition: background-color 0.2s ease, -webkit-transform 0.2s ease, color 0.2s ease;
 }
 .quiz-btn.selected {
     background-color: #0026ff;
@@ -616,7 +703,6 @@ body {
 .quiz-btn:hover {
     background-color: #e6e6e6;
 }
-
 .quiz-btn.selected:hover {
     background-color: #0022dd;
 }
@@ -671,51 +757,147 @@ body {
     display: block;
     height: auto;
     max-height: 48px;
-    margin-bottom: auto;
+    margin-top: 40px;
+    margin-bottom: 40px !important;
 }
 .bonus-content {
+    margin-top: 0px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     width: 100%;
     max-width: 1255px;
     min-height: 215px;
     gap: 40px;
-    margin-bottom: auto;
+    margin-bottom: 0;
 }
 .bonus-title {
     font-family: 'Furore', sans-serif;
     font-weight: 400;
     font-size: 48px;
-    line-height: 120%;
-    text-align: center;
+    line-height: 100%;
+    text-align: left;
     text-transform: uppercase;
     color: #fff;
+    margin-bottom: 20px;
+    margin-top: 100px !important;
+}
+.bonus-content--title {
+    color: #fff;
+    font-family: 'Furore', sans-serif;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; 
+    width: 320px;
+}
+.bonus-content--prize {
+        transform: rotate(-2.249deg);
+    -webkit-transform: rotate(-2.249deg);
+    border-radius: 12px;
+    background: #FA2529;
+    color: #FFF;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Furore;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -2.015px;
+    text-transform: uppercase;
+    padding: 15px 10px;
+    margin: -5px 0 20px;
+    margin-left: -10px;
 }
 .bonus-subtitle {
-    font-family: 'Helvetica', Arial, sans-serif;
-    font-weight: 400;
-    font-size: 28px;
-    line-height: 110%;
-    text-align: center;
-    color: #fff;
-    white-space: pre-line;
+    color: #FFF;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Helvetica;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 100%;
+    letter-spacing: -0.64px;
+    text-transform: none;
+    width: 100%;
+    max-width: 900px;
+}
+.bonus--img {
+    position: absolute;
+    bottom: -10%;
+    right: 0;
+    max-width: 90%;
+    width: 1600px;
+    max-height: 90vh;
+        object-fit: contain;
+        object-position: bottom;
+}
+.bonus--bm {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
 }
 
 .mobile-break {
     display: none;
 }
 
+.bonus--img,
+.bonus--bm {
+    z-index: 1;
+}
+
+.bonus-title,
+.bonus-logo,
+.bonus-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   МЕДИА-ЗАПРОСЫ (адаптированы с учетом dvh и safe-area)
+   ========================================================================== */
+
 @media (max-width: 767px) {
+    .bonus--img {
+        max-width: 120%;
+        max-height: 50dvh;
+        object-fit: contain;
+        object-position: bottom;
+    }
+    .bonus--bm {
+        display: none;
+    }
+    .bonus-content--title {
+        font-size: 40px;
+        text-align: center;
+    }
+    .bonus-content--prize {
+        font-size: 56px;
+        padding: 20px 10px;
+        border-radius: 12px;
+        margin: 0px 0 10px;
+    }
+    
     .screen {
         padding: 0 0 20px;
+        /* Основное изменение для мобильного Safari */
         height: 100dvh;
         max-height: 100dvh;
         justify-content: flex-start;
         overflow-y: hidden;
         background-color: #000;
+        
+        /* Переопределяем паддинги с учетом Safe Area */
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
     }
+    
     .screen-overlay {
         position: absolute;
         top: -15px;
@@ -725,50 +907,61 @@ body {
         width: auto !important;  
         height: auto !important; 
         transform: translateZ(0);
+        -webkit-transform: translateZ(0);
         backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
     }
+    
     .logo-container {
         margin: 0;
-        padding: 40px 0 0;
+        /* Увеличиваем верхний отступ для логотипа, чтобы он не заезжал под адресную строку/челку */
+        padding: max(40px, env(safe-area-inset-top)) 0 0;
         width: 100%;
         display: flex;
         justify-content: center;
         flex-shrink: 0;
     }
+    
     .logo {
         max-width: 126px;
         height: 40px;
         width: auto;
         object-fit: contain;
     }
+    
     #main-screen {
         background-image: url('imgs/back_mob.jpg');
         background-size: cover;
         background-position: center;
         padding: 0 20px 20px;
     }
+    
     #main-screen .logo-container {
         margin-bottom: 0;
         animation-delay: 0.2s;
     }
+    
     .promo-case {
         max-width: 342px;
         margin: 58px auto auto;
         gap: 8px;
         width: 100%;
     }
+    
     .title {
         font-size: 24px;
         white-space: nowrap;
         line-height: 110%;
         letter-spacing: 0.04em;
     }
+    
     .subtitle {
         font-size: 14px;
         white-space: normal;
         line-height: 130%;
         margin-bottom: 12px;
     }
+    
     .btn-start {
         width: 100%;
         max-width: 342px;
@@ -777,17 +970,20 @@ body {
         border-radius: 12px;
         margin-top: 0;
     }
+    
     #rules-screen {
         background-image: url('imgs/main_mob.png');
         background-size: cover;
         background-position: center;
         padding: 0 24px 20px;
     }
+    
     #rules-screen .logo-container {
         margin-bottom: 0;
         opacity: 1;
         animation: none;
     }
+    
     .rules-content {
         max-width: 342px;
         width: 100%;
@@ -800,6 +996,7 @@ body {
         justify-content: flex-start;
         padding-top: 60px;
     }
+    
     .rules-title {
         font-size: 24px;
         max-width: 100%;
@@ -808,7 +1005,7 @@ body {
         text-align: center;
         line-height: 100%;
     }
-
+    
     .rules-container {
         display: flex;
         flex-direction: column;
@@ -817,6 +1014,7 @@ body {
         margin: 0 auto 42px auto;
         width: 100%;
     }
+    
     .rule-card {
         flex: 0 0 140px;
         width: 100%;
@@ -831,14 +1029,17 @@ body {
         padding: 20px 16px;
         text-align: center;
         border: none;
+        -webkit-backdrop-filter: none;
         backdrop-filter: none;
         transition: none;
     }
+    
     .rule-card:hover {
         transform: none;
         box-shadow: none;
         background: #0019FF;
     }
+    
     .rule-card-number {
         font-size: 40px;
         line-height: 100%;
@@ -848,6 +1049,7 @@ body {
         font-family: 'Furore', sans-serif;
         display: block;
     }
+    
     .rule-card-text {
         font-size: 16px;
         line-height: 110%;
@@ -858,6 +1060,7 @@ body {
         text-align: center;
         width: 100%;
     }
+    
     .btn-continue {
         width: 100%;
         max-width: 342px;
@@ -867,22 +1070,27 @@ body {
         margin: 0 auto;
         flex-shrink: 0;
     }
+    
     .btn-start, .btn-continue {
         margin-top: 0;
     }
+    
     #game-screen {
         padding: 0;
         background: #000;
     }
+    
     #game-screen::before {
         background-image: url('imgs/main_mob.png');
         background-size: cover;
         background-position: center;
         z-index: -1;
     }
+    
     #game-screen .screen-overlay {
         display: none;
     }
+    
     #play-zone {
         padding: 0 24px 20px;
         justify-content: flex-start;
@@ -891,30 +1099,34 @@ body {
         width: 100%;
         max-width: 390px;
         margin: 0 auto;
+        padding-top: env(safe-area-inset-top); /* Защита от челки */
     }
+    
     #play-zone::before {
         content: "";
         display: block;
         width: 126px;
         height: 40px;
-        background-image: url('imgs/logo.png');
+        background-image: none;
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
-        margin: 40px auto 40px;
+        margin: max(40px, env(safe-area-inset-top)) auto 40px;
         flex-shrink: 0;
         opacity: 1;
         animation: none;
     }
+    
     .game-title {
         font-size: 24px;
         max-width: 342px;
-        margin: 20px auto -20px;   
+        margin: 0px auto -20px;   
         line-height: 120%;
         letter-spacing: 0.04em;
         text-align: center;
         width: 100%;
     }
+    
     .game-counter {
         font-size: 16px;
         margin-bottom: 30px;
@@ -922,6 +1134,7 @@ body {
         text-align: center;
         width: 100%;
     }
+    
     .video-container {
         display: flex;
         flex-direction: column;
@@ -934,7 +1147,10 @@ body {
         border-radius: 0;
         margin: 0 auto;
         flex-shrink: 0;
+        -webkit-transform: translateZ(0); /* Фикс для видео */
+        transform: translateZ(0);
     }
+    
     #game-video {
         width: 100%;
         height: auto;
@@ -944,6 +1160,7 @@ body {
         background: #000;
         margin: 0;
     }
+    
     #play-zone .quiz-overlay {
         position: relative !important;
         width: 100% !important;
@@ -960,9 +1177,11 @@ body {
         align-items: center;
         justify-content: flex-start;
     }
+    
     #play-zone .quiz-overlay.hidden {
         display: none !important;
     }
+    
     .quiz-options {
         display: grid;
         grid-template-columns: 167px 167px;
@@ -972,6 +1191,7 @@ body {
         justify-content: center;
         margin: 0 auto;
     }
+    
     .quiz-btn {
         width: 167px;
         height: 40px;
@@ -989,13 +1209,16 @@ body {
         text-align: center;
         box-sizing: border-box;
     }
+    
     .quiz-btn.selected {
         background: #0019FF;
         color: #FFFFFF;
     }
+    
     .quiz-btn:hover {
         transform: none;
     }
+    
     .btn-next {
         width: 342px;
         max-width: 100%;
@@ -1011,6 +1234,7 @@ body {
         margin-top: 8px;
         flex-shrink: 0;
     }
+    
     .btn-next:hover {
         transform: none;
     }
@@ -1022,7 +1246,7 @@ body {
 
     #result-zone.result-layout {
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
         padding: 0 24px 20px;
         gap: 0;
@@ -1033,22 +1257,10 @@ body {
         width: 100%;
         box-sizing: border-box;
         position: relative;
-    }
-
-    #result-zone.result-layout::before {
-        content: "";
-        display: block;
-        width: 126px;
-        height: 40px;
-        background-image: url('imgs/logo.png');
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        margin: 40px auto 40px;
-        flex-shrink: 0;
-        order: 0;
-        position: relative;
-        z-index: 2;
+        
+        /* Safe Area */
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
     }
 
     #result-zone.result-layout::after {
@@ -1059,11 +1271,11 @@ body {
         background-size: cover;
         background-position: center;
         filter: blur(6px);
+        -webkit-filter: blur(6px);
         z-index: 0;
         pointer-events: none;
     }
 
-    /* Контент поверх фона */
     #result-zone .result-info {
         display: contents;
         width: 100%;
@@ -1171,8 +1383,15 @@ body {
     }
 
     #bonus-zone.bonus-layout {
-        background-image: url('imgs/last_mob.png');
+        background-image: url('imgs/bonus-bg.jpg');
         background-size: cover;
+       
+        height: 100dvh;
+        
+        /* Safe Area */
+    }
+
+    .bonus-wrap {
         background-position: center;
         padding: 0 24px 20px;
         justify-content: flex-start;
@@ -1181,22 +1400,30 @@ body {
         flex-direction: column;
         align-items: center;
         box-sizing: border-box;
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+        max-width: 1200px;
+        margin: 0 auto;
     }
+    
     #bonus-zone .bonus-logo {
-        max-width: 126px;
+        /* max-width: 126px; */
         height: 40px;
-        margin: 40px auto 0;
+        margin: 20px auto 0;
+        margin-bottom: 20px !important;
         flex-shrink: 0;
         display: block;
-        order: 0;
+        order: 0;object-fit: contain;
     }
+    
     #bonus-zone .bonus-content {
         gap: 0;
-        margin: -30px auto 0;
-        flex: 1;
-        justify-content: center;
-        order: 1;
+        margin: 20px auto 0;
+        justify-content: flex-start;
+        align-items: center;
     }
+
+    
 
     #bonus-zone .bonus-title {
         font-size: 24px;
@@ -1205,19 +1432,24 @@ body {
         text-align: center;
         color: #FFFFFF;
         width: 100%;
-        margin: 0 0 12px 0;
+        margin: 60px 0 12px 0;
         text-transform: uppercase;
     }
 
-    #bonus-zone .bonus-subtitle {
-        font-size: 14px;
+    #bonus-zone .bonus-subtitle  {
+        font-size: 20px;
         line-height: 110%;
         text-align: center;
         color: #FFFFFF;
         width: 100%;
-        margin: 0 0 32px 0;
+        margin: 0 0 0 0;
         white-space: normal;
     }
+
+    .bonus-highlight {
+        font-size: 14px;
+    }
+
     #bonus-zone .btn-bonus-final {
         width: 342px;
         max-width: 100%;
@@ -1237,8 +1469,9 @@ body {
         justify-content: center;
         box-sizing: border-box;
         flex-shrink: 0;
-        margin-top: 8px;
+        margin-top: 36px;
     }
+    
     #bonus-zone .btn-bonus-final:hover {
         transform: none;
     }
@@ -1246,6 +1479,28 @@ body {
     .mobile-break {
         display: inline;
     }
+
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
+    .bonus-layout.active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: visible;
+    }
+
+    .bonus-wrap {
+        overflow: visible !important;
+        height: 100vh;
+    }
+
+    
+    /* Отключаем ховеры на тач-устройствах чтобы не было залипаний в Safari */
     .btn-start:hover, .btn-continue:hover,
     .quiz-btn:hover, .btn-next:hover,
     .btn-action.red:hover, .btn-action.blue:hover,
@@ -1253,6 +1508,7 @@ body {
         transform: none !important;
         transition: none !important;
     }
+    
     .btn-start:active, .btn-continue:active,
     .quiz-btn:active, .btn-next:active,
     .btn-action:active, .btn-bonus-final:active {
@@ -1260,6 +1516,12 @@ body {
         transition: all 0.05s ease;
     }
 }
+
+/* Остальная часть CSS (медиа-запросы для десктопа и промежуточных размеров) осталась без изменений,
+   так как основные проблемы Safari касаются мобильных устройств. 
+   Убедитесь, что все места с 100vh в десктопных стилях также продублированы через 100dvh,
+   если предполагается просмотр на iPad в альбомной ориентации. 
+   (Ниже следует остальной оригинальный CSS) */
 
 /* ==========================================================================
    ДОПОЛНИТЕЛЬНАЯ АДАПТАЦИЯ ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ (≤380px)
@@ -1269,7 +1531,7 @@ body {
         padding: 0 12px 12px;
     }
     .logo-container {
-        padding-top: 30px;
+        padding-top: 10px;
     }
     .logo {
         max-width: 100px;
@@ -1327,12 +1589,14 @@ body {
         font-size: 13px;
     }
     #bonus-zone .bonus-title {
-        font-size: 22px;
+        /* font-size: 22px; */
     }
-    #bonus-zone .bonus-subtitle {
-        font-size: 13px;
+    #bonus-zone .bonus-subtitle, .bonus-highlight  {
+        font-size: 20px;
+        line-height: 1.3;
     }
     #bonus-zone .btn-bonus-final {
+        margin-top: 15%;
         height: 48px;
         font-size: 16px;
     }
@@ -1347,6 +1611,16 @@ body {
     .rules-content {
         padding-top: 12px;
     }
+
+        .bonus--img {
+        transform: translate(38%, 20%) scale(1.5);
+        transform-origin: bottom right; /* масштабирование от правого нижнего угла */
+        max-width: 120%;
+        max-height: 50dvh;
+        object-fit: contain;
+        object-position: bottom;
+        /* остальные свойства (position, bottom, right) наследуются от общих стилей */
+    }
 }
 
 
@@ -1358,7 +1632,7 @@ body {
         margin-bottom: 20px;
     }
     .rules-content {
-        margin-top: 100px;
+        margin-top: 40px;
         margin-bottom: auto;
     }
     .promo-case {
@@ -1393,7 +1667,7 @@ body {
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('imgs/main.png');
+        background-image: url('imgs/main.jpg');
         background-size: cover;
         background-position: center;
         filter: blur(6px);    
@@ -1446,7 +1720,7 @@ body {
     }
 
     .bonus-title {
-        margin-bottom: 16px;       
+        margin-bottom: 25px;       
     }
 
     .bonus-subtitle {
@@ -1485,6 +1759,10 @@ body {
     }
     .subtitle {
         font-size: 22px;
+    }
+
+    .bonus-title {
+    font-size: clamp(28px, 4vw, 44px);
     }
     .btn-start {
         width: 280px;
@@ -1625,26 +1903,29 @@ body {
     }
 
     .bonus-layout {
-        padding: 30px 40px;
-        justify-content: center;
+        padding: 20px 40px 0; 
+        justify-content: flex-start;  
     }
     .bonus-logo {
         max-height: 56px;
-        margin-bottom: 290px;
+        margin-bottom: 100px; 
     }
     .bonus-content {
         max-width: 100%;
-        gap: 16px;
+        gap: 12px;            
         min-height: auto;
+        margin-top: 0;       
     }
     .bonus-title {
-        font-size: 32px;
-        margin-bottom: 0;
+        font-size: clamp(28px, 4vw, 44px);
+        margin-bottom: 20px;  
     }
     .bonus-subtitle {
-        font-size: 18px;
-        margin-bottom: 0;
-        line-height: 120%;
+        font-size: 24px;
+        margin-bottom: 20px;  
+    }
+    .bonus-highlight {
+        font-size: 24px;
     }
     .btn-bonus-final {
         width: 260px;
@@ -1653,6 +1934,40 @@ body {
         padding: 12px 24px;
         border-radius: 10px;
         margin-top: 4px;
+    }
+
+    .bonus--img {
+        transform: translate(20%, 10%) scale(1.2); 
+        max-width: 80%; 
+        right: 0;
+        bottom: -15%;
+    }
+    .bonus--bm {
+        width: 40%;
+        max-width: 400px;
+        left: 5%;
+        bottom: 0;
+    }
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+        /* не трогаем height и overflow-y, чтобы вертикальный скролл работал */
+    }
+
+    /* Делаем бонусный экран фиксированным, чтобы он не скроллился */
+    .bonus-layout.active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: visible; /* разрешаем выход содержимого за пределы */
+    }
+
+    /* Родительский контейнер не должен обрезать изображение */
+    .bonus-wrap {
+        overflow: visible !important; /* отключаем обрезание */
+        height: 100vh;
     }
 
     .mobile-break {
@@ -1700,7 +2015,7 @@ body {
         font-size: 20px;
         margin-top: 10px;
     }
-
+    
     /* ======= ОБЩИЕ СТИЛИ ДЛЯ КНОПОК (КАК НА ГЛАВНОМ) ======= */
     .btn-continue,
     .btn-next,
@@ -1779,6 +2094,17 @@ body {
         font-size: 20px;
         margin-top: 2vh;
         background-color: #FA2529;
+    }
+
+    .bonus--img {
+        /* width: 50%;
+        max-width: 600px; */
+    }
+    .bonus--bm {
+        width: 30%;
+        max-width: 400px;
+        left: 10%;
+        bottom: 0;
     }
 
     /* ======= ИГРОВОЙ ЭКРАН ======= */
@@ -1903,7 +2229,7 @@ body {
 
     /* ======= БОНУСНЫЙ ЭКРАН ======= */
     .bonus-layout {
-        padding: 2vh 4vw;
+        padding: 2vh 4vw 0;
         justify-content: flex-start;   
         gap: 1.5vh;
         padding-top: 4vh;             
@@ -1914,13 +2240,13 @@ body {
         margin-bottom: 220px;           
     }
     .bonus-content {
-        gap: 1vh;
+        /* gap: 1vh;
         max-width: 80%;
-        margin-top: 2vh;
+        margin-top: 2vh; */
     }
     .bonus-title {
         font-size: clamp(30px, 3.5vw, 52px);
-        margin-bottom: 0;
+        margin-bottom: 20px;
     }
     .bonus-subtitle {
         font-size: clamp(18px, 1.8vw, 30px);
@@ -1968,7 +2294,7 @@ body {
     }
 
     #rules-screen .rule-card-number {
-        font-size: 30px;
+        font-size: 28px;
         margin-bottom: 4px; 
     }
 
@@ -1981,6 +2307,360 @@ body {
     #rules-screen .btn-continue {
         height: 50px; 
         font-size: 18px; 
+        border-radius: 12px;
+    }
+}
+
+
+#preloader-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1a1a2e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.preloader-content {
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.preloader-logo {
+    font-size: 48px;
+    margin-bottom: 30px;
+    animation: pulse 1.5s infinite;
+}
+
+.preloader-bar {
+    width: 280px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    margin: 0 auto 15px;
+    overflow: hidden;
+}
+
+#preloader-progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #00d4ff, #00ff88);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+#preloader-percent {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+#app-content.hidden {
+    display: none;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+
+
+@media (min-width: 1300px) {
+    .bonus-content {
+        /* max-width: 55%;
+        margin-left: 5%;
+        align-self: flex-start; */
+    }
+
+    .bonus-title {
+        margin-top: 180px !important;
+    }
+        .bonus--img {
+        transform: translate(35%, 18%) scale(1.3);
+    }
+    html, body {
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .bonus-layout.active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: visible; 
+    }
+
+    .bonus-wrap {
+        overflow: visible;
+        height: 100vh;
+    }
+}
+
+@media (min-width: 1921px) {
+
+    .bonus--img {
+        max-width: 120%;
+        max-height: 90vh;
+        transform: translateX(20%);
+        object-fit: contain;
+        object-position: bottom;
+    }
+    /* ===== ГЛАВНЫЙ ЭКРАН ===== */
+    .promo-case {
+        max-width: 1300px;
+    }
+    .title {
+        font-size: 90px;
+    }
+    .subtitle {
+        font-size: 36px;
+    }
+    .btn-start {
+        width: 480px;
+        height: 90px;
+        font-size: 36px;
+        margin-top: 40px;
+    }
+
+    /* ===== ЭКРАН ПРАВИЛ ===== */
+    .rules-content {
+        max-width: 1600px;
+        margin-top: 130px;
+    }
+    .rules-title {
+        font-size: 64px;
+        max-width: 600px;
+        margin-bottom: 60px;
+    }
+    .rules-container {
+        flex-wrap: nowrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    .rule-card {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+        height: auto;
+        min-height: 480px;
+        padding: 40px 40px;
+        border-radius: 24px;
+        background: #0019FF;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .rule-card-number {
+        font-size: 100px;
+        margin-bottom: 12px;
+    }
+    .rule-card-text {
+        font-size: 34px;
+        max-width: 90%;
+        line-height: 1.2;
+    }
+    .btn-continue {
+        width: 480px;
+        height: 90px;
+        font-size: 36px;
+        margin-top: 40px;
+    }
+
+    /* ===== ИГРОВОЙ ЭКРАН (ВИДЕО + КВИЗ) ===== */
+    .video-container {
+        max-width: 90%;
+        width: 100%;
+    }
+    .game-title {
+        font-size: 64px;
+        max-width: 100%;
+    }
+    .game-counter {
+        font-size: 40px;
+    }
+    .quiz-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        max-width: 700px;
+        width: 100%;
+    }
+    .quiz-btn {
+        width: 100%;
+        height: 64px;
+        font-size: 32px;
+    }
+    .btn-next {
+        width: 480px;
+        height: 90px;
+        font-size: 36px;
+    }
+
+    /* ===== ЭКРАН РЕЗУЛЬТАТА ===== */
+    .result-layout {
+        padding: 60px 120px;
+        gap: 80px;
+    }
+    .result-info {
+        max-width: 950px;
+    }
+    .result-title {
+        font-size: 56px;
+        margin-bottom: 30px;
+    }
+    .result-subtitle {
+        font-size: 36px;
+        margin-bottom: 50px;
+    }
+    .result-buttons {
+        width: 100%;
+        max-width: 480px;
+    }
+    .result-media {
+        max-width: 50%;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+    .img-result {
+        max-height: 750px;
+        border-width: 10px;
+        border-radius: 32px;
+    }
+    .btn-action {
+        width: 480px;
+        height: 90px;
+        font-size: 36px;
+        padding: 18px 32px;
+        border-radius: 14px;
+    }
+
+    /* ===== БОНУСНЫЙ ЭКРАН  ===== */
+    .bonus-layout {
+        padding-top: 70px;         
+        padding-bottom: 0;
+    }
+    .bonus-logo {
+        max-height: 64px;          
+        margin-bottom: 50px !important;
+    }
+    .bonus-title {
+        /* font-size: 110px;           */
+        margin-bottom: 40px;
+    }
+    .bonus-content {
+        /* max-width: 65%;
+        margin-left: 5%;
+        margin-top: 80px;            */
+    }
+    .bonus-subtitle {
+        font-size: 44px;          
+        max-width: 1000px;
+    }
+    .bonus-content--title {
+        font-size: 80px;           
+    }
+    .bonus-content--prize {
+        font-size: 100px;         
+        padding: 24px 32px;
+        border-radius: 28px;
+    }
+    .bonus--img {
+        /* width: 1600px;
+        max-width: 70%;            */
+    }
+    .bonus--bm {
+        width: 65%;               
+        max-width: 800px;          
+        left: 5%;
+        bottom: 0;
+    }
+    .btn-bonus-final {
+        width: 480px;
+        height: 90px;
+        font-size: 36px;
+    }
+
+    /* ===== ОБЩИЕ ЭЛЕМЕНТЫ ===== */
+    .screen {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .logo-container {
+        margin-bottom: 40px;
+    }
+    .logo {
+        max-height: 70px;
+        width: auto;
+    }
+    #play-zone {
+        padding: 70px 0;
+    }
+    .bonus-layout {
+        padding-top: 50px;
+        padding-bottom: 0;
+    }
+
+    /* ===== ВСЕ КНОПКИ — ЕДИНЫЙ РАЗМЕР ===== */
+    .btn-start,
+    .btn-continue,
+    .btn-next,
+    .btn-action,
+    .btn-bonus-final {
+        width: 480px;
+        height: 90px;
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 1200px) and (max-height: 800px)  {
+    .bonus-title {
+        margin-top: 20px !important;
+    }
+
+    .bonus--img {
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 767px) and (max-height: 780px) {
+    
+    #bonus-zone .bonus-title {
+        margin-top: 20px;
+    }
+
+    .bonus-content--prize {
+        padding: 10px 10px;
+        font-size: 48px;
+    }
+
+    .bonus--img {
+        max-height: 40dvh;
+        max-width: 120%;
+    }
+
+    #bonus-zone .btn-bonus-final {
+        margin-top: 18px;
+    }
+
+}
+
+@media (max-width: 600px) and (max-height: 650px) {
+    
+    #rules-screen .rule-card {
+        flex: 0 0 100px; 
+        height: 110px;
+        padding: 12px 16px;
         border-radius: 12px;
     }
 }
