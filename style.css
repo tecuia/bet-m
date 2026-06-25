@@ -2694,23 +2694,25 @@ body {
 }
 
 @media (min-width: 1660px) and (max-width: 1900px) and (max-height: 960px) {
-    /* Уменьшаем заголовок */
+    .result-layout {
+        padding: 40px 13.8% !important;   
+        justify-content: space-between !important;
+        gap: 60px !important;
+    }
+
     .result-title {
-        font-size: 30px !important;  /* было 40px */
+        font-size: 36px !important;
         margin-bottom: 16px;
     }
-
-    /* Уменьшаем описание — на 2 размера шрифта меньше (с 28px до ~22px) */
     .result-subtitle {
-        font-size: 24px !important;   /* было 28px */
+        font-size: 26px !important;
         margin-bottom: 24px;
     }
-
-    /* Ограничиваем картинку: уже и ниже */
     .img-result {
-        max-height: 500px !important; 
+        max-height: 550px !important;
         border-width: 5px;
-        max-width: 80%;
+        max-width: 80% !important;
+        width: auto !important;
+        object-fit: contain;
     }
-
 }
