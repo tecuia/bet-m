@@ -887,17 +887,15 @@ body {
 
 @media (max-width: 767px) {
     .bonus--img {
-        -webkit-transform: translate(28%, 25%) scale(1.4) rotate(5deg);
         transform: translate(28%, 25%) scale(1.4) rotate(5deg);
-        -webkit-transform-origin: bottom right;
         transform-origin: bottom right;
-        max-width: 110% !important;
+        max-width: 110% !important; 
         max-height: 50dvh;
         -webkit-object-fit: contain;
         object-fit: contain;
         -webkit-object-position: bottom;
         object-position: bottom;
-    }
+}
     .bonus--bm {
         display: none;
     }
