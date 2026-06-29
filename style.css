@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.5.15,
+* Autoprefixer: v10.5.0
+* Browsers: last 2 Safari versions,last 2 iOS versions
+*/
+
 /* 
  * ==========================================================================
  *  GOOGLE INSIGHTS — SAFARI ADAPTATION & ENHANCEMENTS
@@ -517,8 +524,6 @@ body {
     color: #fff;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
-    -webkit-transition: background-color 0.2s ease, -webkit-transform 0.2s ease;
-    transition: background-color 0.2s ease, -webkit-transform 0.2s ease;
     margin-top: 20px;
 }
 .btn-start:hover, .btn-continue:hover {
@@ -648,7 +653,6 @@ body {
     background-color: #000;
     
     /* Фикс для iOS Safari: z-index внутри overflow-hidden */
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
 }
 #game-video {
@@ -672,7 +676,6 @@ body {
     gap: 24px;
     
     /* Плавность для iOS */
-    -webkit-backdrop-filter: blur(0px);
     backdrop-filter: blur(0px);
 }
 .quiz-overlay.hidden {
@@ -1059,7 +1062,6 @@ body {
         padding: 20px 16px;
         text-align: center;
         border: none;
-        -webkit-backdrop-filter: none;
         backdrop-filter: none;
         transition: none;
     }
@@ -1176,8 +1178,7 @@ body {
         overflow: visible;
         border-radius: 0;
         margin: 0 auto;
-        flex-shrink: 0;
-        -webkit-transform: translateZ(0); /* Фикс для видео */
+        flex-shrink: 0; /* Фикс для видео */
         transform: translateZ(0);
     }
     
@@ -2719,4 +2720,3 @@ body {
         margin-bottom: 16px;
     }
 }
-
