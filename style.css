@@ -1,10 +1,3 @@
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v8.5.15,
-* Autoprefixer: v10.5.0
-* Browsers: iOS >= 12,Safari >= 12
-*/
-
 /* 
  * ==========================================================================
  *  GOOGLE INSIGHTS — SAFARI ADAPTATION & ENHANCEMENTS
@@ -872,12 +865,11 @@ body {
     z-index: 2;
 }
 
-/* Длинный дисклеймер – прижат к низу, но над коротким */
 .bonus-layout .legal-disclaimer {
     width: 100%;
     max-width: 1290px;
-    margin: auto auto 0 auto;          /* прижимаем к низу */
-    padding: 0 20px 40px;              /* отступ снизу, чтобы не налезал на discl */
+    margin: auto auto 0 auto;        
+    padding: 0 20px 40px;             
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: clamp(0.3rem, 0.7vw, 0.7rem);
@@ -895,11 +887,15 @@ body {
 
 @media (max-width: 767px) {
     .bonus--img {
-        transform: translate(28%, 25%) scale(1.4) rotate(5deg);  
-        transform-origin: bottom right;            
+        -webkit-transform: translate(28%, 25%) scale(1.4) rotate(5deg);
+        transform: translate(28%, 25%) scale(1.4) rotate(5deg);
+        -webkit-transform-origin: bottom right;
+        transform-origin: bottom right;
         max-width: 120%;
         max-height: 50dvh;
+        -webkit-object-fit: contain;
         object-fit: contain;
+        -webkit-object-position: bottom;
         object-position: bottom;
     }
     .bonus--bm {
@@ -2720,5 +2716,42 @@ body {
     .result-title {
         font-size: 36px !important;
         margin-bottom: 16px;
+    }
+}
+
+/* ============================================================
+   ТОЛЬКО ДЛЯ САМЫХ МАЛЕНЬКИХ iPhone (SE, 12/13 mini)
+   ============================================================ */
+@media (max-width: 390px) and (max-height: 700px) and (orientation: portrait) {
+    .rules-content {
+        padding-top: 5px !important;
+        gap: 8px !important;
+    }
+
+    .rules-title {
+        margin-bottom: 12px !important;
+    }
+
+    .rules-container {
+        gap: 6px !important;
+        margin: 0 auto 12px auto !important;
+    }
+
+    .rule-card {
+        flex: 0 0 135px !important;
+        height: 85px !important;
+        padding: 8px 12px !important;
+        border-radius: 10px !important;
+    }
+
+    .rule-card-number {
+        font-size: 22px !important;
+        margin-bottom: 2px !important;
+    }
+
+    .rule-card-text {
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+        max-width: 100% !important;
     }
 }
