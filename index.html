@@ -185,37 +185,39 @@
                 </div>
             </div>
 
-            <!-- BONUS ZONE -->
+<!-- ==================== BONUS ZONE ==================== -->
 <div id="bonus-zone" class="game-zone bonus-layout hidden">
-    <!-- НОВЫЙ РЕКЛАМНЫЙ ТЕКСТ -->
-    <div class="bonus-legal-text">
+    <!-- Основной контент бонуса (включая фото) -->
+    <div class="bonus-wrap">
+        <img src="imgs/logo.png" alt="Бет-М" class="bonus-logo" />
+        <h3 class="bonus-title">ФУТБОЛ УМЕЕТ УДИВЛЯТЬ</h3>
+        <div class="bonus-content">
+            <h4 class="bonus-content--title">Забирай фрибет</h4>
+            <h4 class="bonus-content--prize">до 5000</h4>
+            <p class="bonus-subtitle">
+                на первый депозит от Бет-М <br />
+                и смотри матчи с большим интересом
+            </p>
+            <button id="btn-get-bonus-final" class="btn-bonus-final" onclick="ym(110126816, 'reachGoal', 'bonus_transfer')">
+                ЗАБРАТЬ БОНУС
+            </button>
+        </div>
+        <!-- Фото – абсолютно позиционировано внутри .bonus-wrap / .bonus-layout -->
+        <img src="./imgs/bonus_visual.png" alt="" class="bonus--img" />
+    </div>
+
+    <!-- ДЛИННЫЙ ЮРИДИЧЕСКИЙ ТЕКСТ (как в Мелбет) – не влияет на фото -->
+    <div class="legal-disclaimer">
         Реклама 18+ Рекламодатель: bet-m.ru. Розыгрыш происходит во время участия в азартной игре. Полные правила, информация об организаторе, о призовом фонде, количестве призов или выигрышей, о сроках, месте, и порядке их получения — на сайте bet-m.ru. Срок проведения Акции "ПРИВЕТСТВЕННЫЙ ФРИБЕТ" с 29.05.2026 12:00 (UTC + 3) до 31.07.2026 23:59 (UTC + 3). Срок проведения акции может быть изменен по усмотрению Организатора азартных игр.
     </div>
-    <!-- СУЩЕСТВУЮЩИЙ ДИСКЛЕЙМЕР -->
+
+    <!-- КОРОТКИЙ ДИСКЛЕЙМЕР С ERID (фиксирован внизу) -->
     <div class="discl">
         <span>Реклама 18+ </span>
         <span>ООО "Бет-М" ИНН 2540247493</span>
         <span>ERID: 2W5zFGrfRFP</span>
     </div>
-    <div class="bonus-wrap">
-                    <img src="imgs/logo.png" alt="Бет-М" class="bonus-logo" />
-                    <h3 class="bonus-title">ФУТБОЛ УМЕЕТ УДИВЛЯТЬ</h3>
-                    <div class="bonus-content">
-                        <h4 class="bonus-content--title">Забирай фрибет</h4>
-                        <h4 class="bonus-content--prize">до 5000</h4>
-                        <p class="bonus-subtitle">
-                            на первый депозит от Бет-М <br />
-                            и смотри матчи с большим интересом
-                        </p>
-                        <button id="btn-get-bonus-final" class="btn-bonus-final" onclick="ym(110126816, 'reachGoal', 'bonus_transfer')">
-                            ЗАБРАТЬ БОНУС
-                        </button>
-                    </div>
-
-                    <img src="./imgs/bonus_visual.png" alt="" class="bonus--img" />
-                    <!-- <img src="./imgs/bonus_bm.png" alt="" class="bonus--bm"> -->
-                </div>
-            </div>
+</div>
         </section>
 
         <script src="script.js"></script>
