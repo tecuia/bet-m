@@ -2,7 +2,7 @@
 * Prefixed by https://autoprefixer.github.io
 * PostCSS: v8.5.15,
 * Autoprefixer: v10.5.0
-* Browsers: last 2 Safari versions,last 2 iOS versions
+* Browsers: iOS >= 12,Safari >= 12
 */
 
 /* 
@@ -676,7 +676,8 @@ body {
     gap: 24px;
     
     /* Плавность для iOS */
-    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+            backdrop-filter: blur(0px);
 }
 .quiz-overlay.hidden {
     display: none !important;
@@ -1062,7 +1063,8 @@ body {
         padding: 20px 16px;
         text-align: center;
         border: none;
-        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+                backdrop-filter: none;
         transition: none;
     }
     
